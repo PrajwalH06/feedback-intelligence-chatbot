@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Cognitive Architect | Feedback Intelligence</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;family=Manrope:wght@500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "on-secondary-fixed-variant": "#38485d",
+                        "primary": "#bac3ff",
+                        "secondary-fixed-dim": "#b7c8e1",
+                        "on-primary-fixed": "#00105b",
+                        "on-tertiary-fixed": "#001f24",
+                        "background": "#0b1326",
+                        "on-tertiary": "#00363d",
+                        "surface-container-highest": "#2d3449",
+                        "on-primary": "#15267b",
+                        "on-tertiary-container": "#31e6ff",
+                        "on-surface-variant": "#c5c5d4",
+                        "on-background": "#dae2fd",
+                        "secondary-container": "#3a4a5f",
+                        "error": "#ffb4ab",
+                        "on-primary-container": "#c9cfff",
+                        "on-error-container": "#ffdad6",
+                        "inverse-on-surface": "#283044",
+                        "surface-container-high": "#222a3d",
+                        "tertiary-fixed-dim": "#00daf3",
+                        "on-primary-fixed-variant": "#2f3f92",
+                        "primary-fixed-dim": "#bac3ff",
+                        "outline-variant": "#454652",
+                        "tertiary-fixed": "#9cf0ff",
+                        "surface-container": "#171f33",
+                        "secondary": "#b7c8e1",
+                        "on-error": "#690005",
+                        "primary-fixed": "#dee0ff",
+                        "error-container": "#93000a",
+                        "surface-container-low": "#131b2e",
+                        "on-surface": "#dae2fd",
+                        "secondary-fixed": "#d3e4fe",
+                        "on-secondary-container": "#a9bad3",
+                        "tertiary-container": "#006470",
+                        "inverse-surface": "#dae2fd",
+                        "surface-bright": "#31394d",
+                        "primary-container": "#4453a7",
+                        "on-secondary": "#213145",
+                        "surface-container-lowest": "#060e20",
+                        "outline": "#8f909e",
+                        "tertiary": "#00daf3",
+                        "on-tertiary-fixed-variant": "#004f58",
+                        "surface-variant": "#2d3449",
+                        "surface-dim": "#0b1326",
+                        "inverse-primary": "#4858ab",
+                        "surface": "#0b1326",
+                        "surface-tint": "#bac3ff",
+                        "on-secondary-fixed": "#0b1c30"
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    fontFamily: {
+                        "headline": ["Manrope"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        ::-webkit-scrollbar { width: 4px; }
+        ::-webkit-scrollbar-track { background: #0b1326; }
+        ::-webkit-scrollbar-thumb { background: #222a3d; border-radius: 10px; }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body selection:bg-primary/30">
+<!-- SideNavBar Shell -->
+<aside class="fixed left-0 top-0 h-full flex flex-col bg-[#0b1326] h-screen w-64 border-r-0 z-50">
+<div class="p-8">
+<h1 class="text-xl font-bold text-[#bac3ff] tracking-wider font-headline">Cognitive Architect</h1>
+<p class="font-inter text-xs font-medium uppercase tracking-widest text-slate-400 mt-1">AI Feedback Intelligence</p>
+</div>
+<nav class="flex-1 px-4 space-y-2">
+<div class="flex items-center gap-3 px-4 py-3 rounded-xl transition-colors duration-200 text-[#bac3ff] font-bold border-r-2 border-[#bac3ff] bg-[#131b2e]">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-manrope font-semibold text-sm tracking-tight">Dashboard</span>
+</div>
+<div class="flex items-center gap-3 px-4 py-3 rounded-xl transition-colors duration-200 text-slate-400 font-medium hover:bg-[#131b2e]">
+<span class="material-symbols-outlined">database</span>
+<span class="font-manrope font-semibold text-sm tracking-tight">Dataset</span>
+</div>
+<div class="flex items-center gap-3 px-4 py-3 rounded-xl transition-colors duration-200 text-slate-400 font-medium hover:bg-[#131b2e]">
+<span class="material-symbols-outlined">model_training</span>
+<span class="font-manrope font-semibold text-sm tracking-tight">Model Training</span>
+</div>
+<div class="flex items-center gap-3 px-4 py-3 rounded-xl transition-colors duration-200 text-slate-400 font-medium hover:bg-[#131b2e]">
+<span class="material-symbols-outlined">analytics</span>
+<span class="font-manrope font-semibold text-sm tracking-tight">Reports</span>
+</div>
+</nav>
+<div class="p-6">
+<button class="w-full py-3 rounded-xl bg-gradient-to-br from-primary to-primary-container text-on-primary font-headline font-bold text-sm uppercase tracking-wider flex items-center justify-center gap-2 shadow-lg shadow-primary/10">
+<span class="material-symbols-outlined text-sm">add</span>
+                New Analysis
+            </button>
+</div>
+</aside>
+<!-- TopNavBar Shell -->
+<header class="fixed top-0 right-0 w-[calc(100%-16rem)] flex justify-between items-center px-8 h-16 z-40 bg-[#0b1326]/80 backdrop-blur-xl shadow-sm">
+<div class="flex items-center gap-8">
+<div class="relative">
+<span class="absolute left-3 top-1/2 -translate-y-1/2 material-symbols-outlined text-slate-400 text-sm">search</span>
+<input class="bg-[#131b2e] border-0 rounded-full pl-10 pr-4 py-1.5 text-xs w-64 focus:ring-1 focus:ring-primary text-on-surface-variant" placeholder="Search insights..." type="text"/>
+</div>
+<div class="flex gap-6">
+<span class="font-inter text-xs font-medium uppercase tracking-widest text-[#00daf3]">Model Accuracy: 92%</span>
+<span class="font-inter text-xs font-medium uppercase tracking-widest text-slate-400">Local Status: Online</span>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="text-slate-400 hover:text-white transition-opacity material-symbols-outlined">notifications</button>
+<button class="text-slate-400 hover:text-white transition-opacity material-symbols-outlined">settings</button>
+<img alt="Admin Avatar" class="w-8 h-8 rounded-full border border-outline-variant" data-alt="professional male headshot with clean lighting and neutral background for user profile avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA8stt6SWs-3uK58SdGAxpZtS7G5wrcXIjm1IaLI2ZPSo5N-XXknjf8__19xNF3oY8XDPkqPcpg1kmOVf39AL9upION99fXp0bnJqFMYJz9sFXc7eCP931Xs7izf0HiuhrqtbbBlz9Z4taVpEWnH6Wi9scUeuV6jGooy7IevvNY1BqX_gTjClwwjgF4bJ6e1lNijbSP2VNcVsyCMKou4tmUAeRdg-5LZcVBSzM2VeBM5uDzBFrCU58ZqmiSwdZzb67qQvtLWgbVrlxo"/>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="ml-64 pt-20 p-8 min-h-screen">
+<!-- Summary Row -->
+<div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+<div class="bg-surface-container-high p-6 rounded-xl relative overflow-hidden">
+<div class="absolute top-0 right-0 p-4 opacity-10">
+<span class="material-symbols-outlined text-4xl">chat_bubble</span>
+</div>
+<p class="font-inter text-[10px] font-bold uppercase tracking-[0.15em] text-on-surface-variant mb-6">Total Feedback</p>
+<h2 class="font-headline text-4xl font-bold text-white">1,240</h2>
+<p class="text-tertiary text-xs mt-2 font-medium flex items-center gap-1">
+<span class="material-symbols-outlined text-xs">trending_up</span> +12% from last week
+                </p>
+</div>
+<div class="bg-surface-container-high p-6 rounded-xl relative overflow-hidden">
+<div class="absolute top-0 right-0 p-4 opacity-10">
+<span class="material-symbols-outlined text-4xl">target</span>
+</div>
+<p class="font-inter text-[10px] font-bold uppercase tracking-[0.15em] text-on-surface-variant mb-6">Model Accuracy</p>
+<h2 class="font-headline text-4xl font-bold text-white">94%</h2>
+<p class="text-slate-400 text-xs mt-2 font-medium">Neural confidence high</p>
+</div>
+<div class="bg-surface-container-high p-6 rounded-xl relative overflow-hidden">
+<div class="absolute top-0 right-0 p-4 opacity-10">
+<span class="material-symbols-outlined text-4xl">mood</span>
+</div>
+<p class="font-inter text-[10px] font-bold uppercase tracking-[0.15em] text-on-surface-variant mb-6">Primary Sentiment</p>
+<h2 class="font-headline text-4xl font-bold text-tertiary">Positive</h2>
+<p class="text-slate-400 text-xs mt-2 font-medium">Net Sentiment Score: 68</p>
+</div>
+<div class="bg-surface-container-high p-6 rounded-xl border border-error-container/20 relative overflow-hidden">
+<div class="absolute top-0 right-0 p-4 opacity-10">
+<span class="material-symbols-outlined text-4xl text-error">warning</span>
+</div>
+<p class="font-inter text-[10px] font-bold uppercase tracking-[0.15em] text-error mb-6">Critical Issues</p>
+<h2 class="font-headline text-4xl font-bold text-white">12</h2>
+<p class="text-error text-xs mt-2 font-medium flex items-center gap-1">
+<span class="material-symbols-outlined text-xs">emergency</span> Requires immediate action
+                </p>
+</div>
+</div>
+<!-- Analytics & Chat Grid -->
+<div class="grid grid-cols-12 gap-6">
+<!-- Left: Detailed Analytics (Asymmetric Bento) -->
+<div class="col-span-12 lg:col-span-8 space-y-6">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<!-- Sentiment Distribution -->
+<div class="bg-surface-container-high p-6 rounded-xl flex flex-col h-80">
+<div class="flex justify-between items-start mb-10">
+<div>
+<h3 class="font-headline text-lg font-bold text-white">Sentiment Distribution</h3>
+<p class="text-xs text-on-surface-variant uppercase tracking-widest mt-1">Classification Breakdown</p>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant">equalizer</span>
+</div>
+<div class="flex-1 flex items-end justify-between px-4 pb-2">
+<div class="flex flex-col items-center gap-2 group w-1/4">
+<div class="w-full bg-tertiary rounded-t-lg transition-all duration-500" style="height: 140px;"></div>
+<span class="text-[10px] font-bold text-slate-400 uppercase tracking-tighter">Positive</span>
+</div>
+<div class="flex flex-col items-center gap-2 group w-1/4">
+<div class="w-full bg-surface-container-highest rounded-t-lg transition-all duration-500" style="height: 60px;"></div>
+<span class="text-[10px] font-bold text-slate-400 uppercase tracking-tighter">Neutral</span>
+</div>
+<div class="flex flex-col items-center gap-2 group w-1/4">
+<div class="w-full bg-error-container rounded-t-lg transition-all duration-500" style="height: 30px;"></div>
+<span class="text-[10px] font-bold text-slate-400 uppercase tracking-tighter">Negative</span>
+</div>
+</div>
+</div>
+<!-- Issue Categories -->
+<div class="bg-surface-container-high p-6 rounded-xl flex flex-col h-80">
+<h3 class="font-headline text-lg font-bold text-white mb-1">Issue Categories</h3>
+<p class="text-xs text-on-surface-variant uppercase tracking-widest mb-8">Volumetric Analysis</p>
+<div class="flex-1 flex items-center justify-center relative">
+<!-- Simulated Pie Chart -->
+<div class="w-40 h-40 rounded-full border-[12px] border-primary-container relative">
+<div class="absolute inset-[-12px] rounded-full border-[12px] border-tertiary border-r-transparent border-b-transparent rotate-45"></div>
+<div class="absolute inset-0 flex flex-col items-center justify-center">
+<span class="text-2xl font-bold font-headline">74%</span>
+<span class="text-[8px] uppercase tracking-widest text-slate-400">Technical</span>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-2 mt-4">
+<div class="flex items-center gap-2">
+<div class="w-2 h-2 rounded-full bg-tertiary"></div>
+<span class="text-[10px] text-slate-300">Technical</span>
+</div>
+<div class="flex items-center gap-2">
+<div class="w-2 h-2 rounded-full bg-primary-container"></div>
+<span class="text-[10px] text-slate-300">Performance</span>
+</div>
+<div class="flex items-center gap-2">
+<div class="w-2 h-2 rounded-full bg-surface-container-highest"></div>
+<span class="text-[10px] text-slate-300">Pricing</span>
+</div>
+<div class="flex items-center gap-2">
+<div class="w-2 h-2 rounded-full bg-primary"></div>
+<span class="text-[10px] text-slate-300">UI/UX</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Keywords & Recent List Bento Section -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-6">
+<div class="md:col-span-4 bg-surface-container-high p-6 rounded-xl h-[400px] flex flex-col">
+<h3 class="font-headline text-lg font-bold text-white mb-6">Common Keywords</h3>
+<div class="flex-1 flex flex-wrap content-start gap-3">
+<span class="px-4 py-2 bg-tertiary/10 text-tertiary rounded-full text-lg font-bold">crash</span>
+<span class="px-3 py-1 bg-surface-container-highest text-white rounded-full text-sm">speed</span>
+<span class="px-5 py-3 bg-primary/20 text-primary rounded-full text-xl font-bold">price</span>
+<span class="px-3 py-1.5 bg-surface-container-highest text-white rounded-full text-base">ui</span>
+<span class="px-4 py-2 bg-surface-container-highest text-white rounded-full text-lg">loading</span>
+<span class="px-3 py-1 bg-primary/10 text-primary rounded-full text-xs">navigation</span>
+<span class="px-4 py-2 bg-tertiary/20 text-tertiary rounded-full text-md font-semibold">billing</span>
+<span class="px-2 py-1 bg-surface-container-highest text-slate-400 rounded-full text-xs">mobile</span>
+<span class="px-3 py-1.5 bg-surface-container-highest text-white rounded-full text-sm">ux</span>
+</div>
+</div>
+<div class="md:col-span-8 bg-surface-container-high rounded-xl flex flex-col h-[400px] overflow-hidden">
+<div class="p-6 pb-2">
+<h3 class="font-headline text-lg font-bold text-white">Recent Feedback</h3>
+</div>
+<div class="flex-1 overflow-y-auto px-6 py-2 space-y-4">
+<!-- Feedback Item -->
+<div class="group py-3 flex gap-4 transition-colors">
+<div class="flex-shrink-0 w-8 h-8 rounded-full bg-surface-container-highest flex items-center justify-center">
+<span class="material-symbols-outlined text-sm text-tertiary">person</span>
+</div>
+<div class="flex-1 space-y-1">
+<div class="flex justify-between items-start">
+<h4 class="text-xs font-bold text-white">User_8291</h4>
+<span class="text-[10px] text-slate-500 uppercase tracking-widest">2m ago</span>
+</div>
+<p class="text-sm text-on-surface-variant leading-relaxed">"The latest update causes a complete crash on launch. Extremely frustrating when trying to access my dashboard."</p>
+<div class="flex gap-2 pt-1">
+<span class="px-2 py-0.5 bg-error/10 text-error rounded text-[9px] font-bold uppercase tracking-tighter">Negative</span>
+<span class="px-2 py-0.5 bg-surface-container-highest text-slate-300 rounded text-[9px] font-bold uppercase tracking-tighter">Technical</span>
+</div>
+</div>
+</div>
+<!-- Feedback Item -->
+<div class="group py-3 flex gap-4 transition-colors">
+<div class="flex-shrink-0 w-8 h-8 rounded-full bg-surface-container-highest flex items-center justify-center">
+<span class="material-symbols-outlined text-sm text-primary">person</span>
+</div>
+<div class="flex-1 space-y-1">
+<div class="flex justify-between items-start">
+<h4 class="text-xs font-bold text-white">BetaTester_X</h4>
+<span class="text-[10px] text-slate-500 uppercase tracking-widest">15m ago</span>
+</div>
+<p class="text-sm text-on-surface-variant leading-relaxed">"Loving the new AI insights. It saved me hours of manual data tagging today."</p>
+<div class="flex gap-2 pt-1">
+<span class="px-2 py-0.5 bg-tertiary/10 text-tertiary rounded text-[9px] font-bold uppercase tracking-tighter">Positive</span>
+<span class="px-2 py-0.5 bg-surface-container-highest text-slate-300 rounded text-[9px] font-bold uppercase tracking-tighter">Performance</span>
+</div>
+</div>
+</div>
+<!-- Feedback Item -->
+<div class="group py-3 flex gap-4 transition-colors">
+<div class="flex-shrink-0 w-8 h-8 rounded-full bg-surface-container-highest flex items-center justify-center">
+<span class="material-symbols-outlined text-sm text-slate-400">person</span>
+</div>
+<div class="flex-1 space-y-1">
+<div class="flex justify-between items-start">
+<h4 class="text-xs font-bold text-white">Client_04</h4>
+<span class="text-[10px] text-slate-500 uppercase tracking-widest">1h ago</span>
+</div>
+<p class="text-sm text-on-surface-variant leading-relaxed">"Pricing seems a bit steep compared to competitors for the basic tier."</p>
+<div class="flex gap-2 pt-1">
+<span class="px-2 py-0.5 bg-white/10 text-slate-400 rounded text-[9px] font-bold uppercase tracking-tighter">Neutral</span>
+<span class="px-2 py-0.5 bg-surface-container-highest text-slate-300 rounded text-[9px] font-bold uppercase tracking-tighter">Pricing</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Right: Conversational Interface -->
+<div class="col-span-12 lg:col-span-4">
+<div class="bg-surface-container-low rounded-2xl h-full flex flex-col relative overflow-hidden backdrop-blur-2xl border border-outline-variant/10 min-h-[700px]">
+<!-- Chat Header -->
+<div class="p-6 border-b border-outline-variant/10 flex items-center gap-4">
+<div class="w-10 h-10 rounded-full bg-tertiary-container flex items-center justify-center shadow-lg shadow-tertiary/20">
+<span class="material-symbols-outlined text-tertiary" style="font-variation-settings: 'FILL' 1;">smart_toy</span>
+</div>
+<div>
+<h3 class="font-headline font-bold text-white text-base">Assistant</h3>
+<div class="flex items-center gap-1.5">
+<div class="w-1.5 h-1.5 bg-tertiary rounded-full animate-pulse"></div>
+<span class="text-[10px] text-tertiary font-bold uppercase tracking-widest">Cognitive Core Active</span>
+</div>
+</div>
+</div>
+<!-- Chat History -->
+<div class="flex-1 p-6 overflow-y-auto space-y-6">
+<div class="flex flex-col gap-2 max-w-[85%]">
+<div class="bg-secondary-container text-on-secondary-container p-4 rounded-full rounded-bl-sm text-sm leading-relaxed">
+                                Hello! Ask me anything about your customer feedback.
+                            </div>
+<span class="text-[9px] text-slate-500 px-2 uppercase tracking-widest">AI Core • Just now</span>
+</div>
+<div class="space-y-3 pt-4">
+<p class="text-[10px] text-slate-400 uppercase tracking-[0.2em] font-bold mb-4">Suggested Queries</p>
+<button class="w-full text-left p-3 rounded-xl bg-surface-container-high border border-outline-variant/5 text-xs text-on-surface-variant hover:bg-surface-bright hover:text-white transition-all group">
+<div class="flex items-center justify-between">
+<span>What are the main pricing issues?</span>
+<span class="material-symbols-outlined text-xs opacity-0 group-hover:opacity-100 transition-opacity">north_east</span>
+</div>
+</button>
+<button class="w-full text-left p-3 rounded-xl bg-surface-container-high border border-outline-variant/5 text-xs text-on-surface-variant hover:bg-surface-bright hover:text-white transition-all group">
+<div class="flex items-center justify-between">
+<span>How can we improve technical stability?</span>
+<span class="material-symbols-outlined text-xs opacity-0 group-hover:opacity-100 transition-opacity">north_east</span>
+</div>
+</button>
+</div>
+</div>
+<!-- Chat Input -->
+<div class="p-6 bg-surface-container-low/50">
+<div class="relative">
+<input class="w-full bg-surface-container-highest border-0 rounded-full py-4 pl-6 pr-14 text-sm focus:ring-2 focus:ring-primary/50 text-white placeholder:text-slate-500" placeholder="Deep search feedback..." type="text"/>
+<button class="absolute right-2 top-1/2 -translate-y-1/2 w-10 h-10 bg-primary text-on-primary rounded-full flex items-center justify-center hover:scale-105 transition-transform active:scale-95 shadow-lg shadow-primary/20">
+<span class="material-symbols-outlined">send</span>
+</button>
+</div>
+</div>
+<!-- Decorative Background for Chat -->
+<div class="absolute bottom-0 right-0 -z-10 w-full h-1/2 bg-gradient-to-t from-tertiary/5 to-transparent pointer-events-none"></div>
+</div>
+</div>
+</div>
+</main>
+<!-- Floating Branding Anchor -->
+<div class="fixed bottom-6 right-6 z-50 lg:hidden">
+<button class="w-14 h-14 bg-primary text-on-primary rounded-full shadow-2xl flex items-center justify-center">
+<span class="material-symbols-outlined">chat</span>
+</button>
+</div>
+</body></html>

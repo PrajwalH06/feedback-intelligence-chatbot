@@ -1,0 +1,41 @@
+# AI Feedback Intelligence: Technical Implementation Plan
+
+## 1. Project Structure
+```
+feedback-intelligence-chatbot/
+├── app.py
+├── requirements.txt
+├── data/
+│   └── feedback.csv
+├── model/
+│   ├── train.py
+│   ├── model.pkl
+│   └── vectorizer.pkl
+├── utils/
+│   ├── preprocess.py
+│   ├── predictor.py
+│   ├── issue_detector.py
+│   ├── recommender.py
+│   └── chatbot.py
+└── assets/
+    └── style.css
+```
+
+## 2. Core Components
+
+### ML Pipeline
+*   **Preprocessing:** Custom NLTK-based cleaning with PorterStemmer.
+*   **Model:** Logistic Regression/Naive Bayes trained on local TF-IDF vectors.
+*   **Issue Detection:** Rule-based keyword engine (Technical, Performance, Pricing, UI/UX).
+
+### Chatbot Engine
+*   **Context:** Direct queries against the local CSV/DataFrame.
+*   **Logic:** Capability to summarize issues, count specific categories, and recommend improvements based on detected pain points.
+
+### UI Strategy
+*   **Framework:** Streamlit for rapid, local dashboarding.
+*   **Visuals:** Integrated Matplotlib/Seaborn graphs for distribution analysis.
+*   **Real-time Testing:** Manual input section for live sentiment testing.
+
+## 3. Impact & Pitch
+This project demonstrates end-to-end ML engineering: data handling, model training, NLP, visualization, and a functional chatbot interface—all running entirely locally without API dependencies.

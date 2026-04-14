@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Executive Report | Cognitive Architect</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <script>
+        tailwind.config = { darkMode: "class", theme: { extend: { colors: { "surface": "#0b1326", "surface-container-low": "#131b2e", "surface-container-high": "#222a3d", "surface-container-highest": "#2d3449", "on-surface": "#dae2fd", "on-surface-variant": "#c5c5d4", "primary": "#bac3ff", "primary-container": "#4453a7", "on-primary": "#15267b", "on-primary-fixed": "#00105b", "tertiary": "#00daf3", "tertiary-container": "#006470", "error": "#ffb4ab", "error-container": "#93000a", "outline-variant": "#454652", "secondary-container": "#3a4a5f", "on-secondary-container": "#a9bad3" }, fontFamily: { headline: ["Manrope"], body: ["Inter"] } } } }
+    </script>
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #0b1326; color: #dae2fd; }
+        .font-headline { font-family: 'Manrope', sans-serif; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        ::-webkit-scrollbar { width: 4px; } ::-webkit-scrollbar-track { background: transparent; } ::-webkit-scrollbar-thumb { background: #222a3d; border-radius: 10px; }
+        .nav-active { color: #bac3ff; font-weight: 700; border-right: 2px solid #bac3ff; background: #222a3d; }
+    </style>
+</head>
+<body class="flex min-h-screen overflow-hidden">
+
+<!-- Sidebar -->
+<nav class="fixed left-0 top-0 h-full z-40 flex flex-col w-64 bg-[#131b2e]">
+    <div class="p-6">
+        <div class="text-xl font-bold text-[#bac3ff] tracking-tight font-headline">Feedback Intelligence</div>
+        <div class="text-[10px] uppercase tracking-[0.05em] text-slate-500 font-medium mt-1">AI Model v2.4.1</div>
+    </div>
+    <div class="mt-8 flex-1 space-y-1 px-4">
+        <a class="flex items-center gap-3 px-4 py-3 text-slate-400 font-medium hover:text-white hover:bg-[#222a3d] transition-colors duration-200" href="/"><span class="material-symbols-outlined">dashboard</span><span class="text-xs uppercase tracking-[0.05em] font-headline">Dashboard</span></a>
+        <a class="flex items-center gap-3 px-4 py-3 text-slate-400 font-medium hover:text-white hover:bg-[#222a3d] transition-colors duration-200" href="/dataset"><span class="material-symbols-outlined">database</span><span class="text-xs uppercase tracking-[0.05em] font-headline">Dataset</span></a>
+        <a class="flex items-center gap-3 px-4 py-3 text-slate-400 font-medium hover:text-white hover:bg-[#222a3d] transition-colors duration-200" href="/training"><span class="material-symbols-outlined">model_training</span><span class="text-xs uppercase tracking-[0.05em] font-headline">Model Training</span></a>
+        <a class="nav-active flex items-center gap-3 px-4 py-3 transition-colors duration-200" href="/reports"><span class="material-symbols-outlined">analytics</span><span class="text-xs uppercase tracking-[0.05em] font-headline">Reports</span></a>
+    </div>
+    <div class="p-6">
+        <button class="w-full bg-[#222a3d] hover:bg-[#2d3449] text-white font-bold py-3 px-4 rounded-xl text-xs uppercase tracking-wider flex items-center justify-center gap-2 transition-colors">
+            <span class="material-symbols-outlined text-sm">download</span> Export Report
+        </button>
+        <div class="mt-4 flex gap-2">
+            <button class="flex-1 py-2 bg-[#222a3d] hover:bg-[#2d3449] text-xs font-bold text-slate-400 rounded-lg uppercase transition-colors text-center">
+                <span class="material-symbols-outlined text-sm block mx-auto mb-1">monitor_heart</span> Health
+            </button>
+            <button class="flex-1 py-2 bg-[#222a3d] hover:bg-[#2d3449] text-xs font-bold text-slate-400 rounded-lg uppercase transition-colors text-center">
+                <span class="material-symbols-outlined text-sm block mx-auto mb-1">folder_open</span> Logs
+            </button>
+        </div>
+    </div>
+</nav>
+
+<!-- Main Content -->
+<main class="ml-64 mr-80 flex-1 h-screen overflow-y-auto bg-[#0b1326] relative">
+    <header class="flex items-center justify-between px-8 w-full h-16 sticky top-0 bg-[#0b1326]/80 backdrop-blur-xl z-30">
+        <div class="flex items-center gap-8">
+            <div class="text-lg font-black text-white font-headline">Cognitive Architect</div>
+            <div class="flex items-center gap-2 text-[10px] font-bold">
+                <span class="text-[#c5c5d4]">Global system search...</span>
+            </div>
+        </div>
+        <div class="flex items-center gap-5">
+            <span class="material-symbols-outlined text-slate-300 hover:text-[#00daf3] cursor-pointer">notifications</span>
+            <span class="material-symbols-outlined text-slate-300 hover:text-[#00daf3] cursor-pointer">settings</span>
+            <div class="w-8 h-8 rounded-full bg-[#222a3d] flex items-center justify-center"><span class="material-symbols-outlined text-[#bac3ff] text-lg">person</span></div>
+        </div>
+    </header>
+
+    <div class="p-8 space-y-8">
+        <!-- Header -->
+        <section>
+            <div class="flex items-center gap-2 mb-2">
+                <span class="w-2 h-2 bg-[#00daf3] rounded-full"></span>
+                <span class="text-[10px] font-bold text-[#00daf3] uppercase tracking-widest">Neuralis Core v2.4 Output</span>
+            </div>
+            <div class="flex items-end justify-between">
+                <div>
+                    <h2 class="text-3xl font-extrabold font-headline text-white tracking-tight">Executive Feedback Summary</h2>
+                    <p class="text-sm text-[#c5c5d4] font-medium mt-1">Comprehensive analysis processed by the local ML architecture.</p>
+                </div>
+                <div class="flex gap-3">
+                    <button class="px-4 py-2 bg-[#222a3d] text-white text-xs font-bold rounded-xl">Last 30 Days</button>
+                    <button class="px-4 py-2 bg-[#222a3d] text-slate-400 text-xs font-bold rounded-xl hover:text-white">All Time</button>
+                    <button class="flex items-center gap-1 px-4 py-2 bg-[#222a3d] text-slate-400 text-xs font-bold rounded-xl hover:text-white"><span class="material-symbols-outlined text-xs">download</span> CSV</button>
+                    <button class="flex items-center gap-1 px-4 py-2 bg-gradient-to-br from-[#bac3ff] to-[#4453a7] text-[#00105b] text-xs font-bold rounded-xl"><span class="material-symbols-outlined text-xs">picture_as_pdf</span> PDF</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Top Stats -->
+        <section class="grid grid-cols-3 gap-6">
+            <div class="bg-[#222a3d] p-6 rounded-xl">
+                <div class="flex items-center justify-between mb-4">
+                    <div class="text-[10px] font-bold text-[#c5c5d4] uppercase tracking-[0.1em]">Net Sentiment Score</div>
+                    <span class="material-symbols-outlined text-[#00daf3]">trending_up</span>
+                </div>
+                <div class="text-4xl font-headline font-extrabold text-white" id="rpt-sentiment">--</div>
+                <div class="mt-3 text-[10px] font-bold text-[#00daf3]" id="rpt-sentiment-delta"></div>
+                <div class="mt-3 w-full bg-[#131b2e] h-1.5 rounded-full overflow-hidden"><div class="h-full bg-[#00daf3] rounded-full" id="rpt-sentiment-bar" style="width:0%"></div></div>
+            </div>
+            <div class="bg-[#222a3d] p-6 rounded-xl">
+                <div class="flex items-center justify-between mb-4">
+                    <div class="text-[10px] font-bold text-[#c5c5d4] uppercase tracking-[0.1em]">Total Analyzed Records</div>
+                    <span class="material-symbols-outlined text-[#c5c5d4]">layers</span>
+                </div>
+                <div class="text-4xl font-headline font-extrabold text-white" id="rpt-total">--</div>
+                <div class="mt-3 text-[10px] font-bold text-slate-400">Processed across local nodes</div>
+            </div>
+            <div class="bg-[#222a3d] p-6 rounded-xl">
+                <div class="flex items-center justify-between mb-4">
+                    <div class="text-[10px] font-bold text-[#c5c5d4] uppercase tracking-[0.1em]">Primary Pain Point</div>
+                    <span class="material-symbols-outlined text-[#ffb4ab]">warning</span>
+                </div>
+                <div class="text-2xl font-headline font-extrabold text-white" id="rpt-pain-point">--</div>
+                <div class="mt-2 text-[10px] font-bold text-[#00daf3] uppercase tracking-widest" id="rpt-pain-label"></div>
+                <div class="mt-2 text-xs text-[#c5c5d4]" id="rpt-pain-desc"></div>
+            </div>
+        </section>
+
+        <!-- Charts Row -->
+        <section class="grid grid-cols-1 lg:grid-cols-5 gap-8">
+            <!-- Sentiment Trend -->
+            <div class="lg:col-span-3 bg-[#131b2e] p-8 rounded-xl">
+                <div class="flex items-center justify-between mb-6">
+                    <div>
+                        <h3 class="text-xl font-bold font-headline text-white">Sentiment Trend Distribution</h3>
+                        <div class="flex items-center gap-4 mt-2">
+                            <span class="flex items-center gap-1 text-[10px] font-bold"><span class="w-2 h-2 bg-[#00daf3] rounded-full"></span> POSITIVE</span>
+                            <span class="flex items-center gap-1 text-[10px] font-bold text-slate-400"><span class="w-2 h-2 bg-[#bac3ff] rounded-full"></span> NEUTRAL</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="h-56 relative overflow-hidden">
+                    <svg class="absolute inset-0 w-full h-full" preserveAspectRatio="none">
+                        <defs>
+                            <linearGradient id="trendGrad" x1="0%" x2="0%" y1="0%" y2="100%">
+                                <stop offset="0%" style="stop-color:#00daf3;stop-opacity:0.15"></stop>
+                                <stop offset="100%" style="stop-color:#00daf3;stop-opacity:0"></stop>
+                            </linearGradient>
+                        </defs>
+                        <path d="M0 180 Q 80 160, 160 150 T 320 120 T 480 80 T 640 50 T 800 30 V 224 H 0 Z" fill="url(#trendGrad)"></path>
+                        <path d="M0 180 Q 80 160, 160 150 T 320 120 T 480 80 T 640 50 T 800 30" fill="none" stroke="#00daf3" stroke-width="2"></path>
+                        <path d="M0 150 Q 80 155, 160 148 T 320 145 T 480 140 T 640 142 T 800 138" fill="none" stroke="#bac3ff" stroke-width="1.5" stroke-dasharray="4"></path>
+                    </svg>
+                    <div class="absolute bottom-0 left-0 w-full flex justify-between px-4 text-[10px] text-slate-500 font-bold uppercase">
+                        <span>WK 01</span><span>WK 02</span><span>WK 03</span><span>WK 04</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Strategic Insights -->
+            <div class="lg:col-span-2 bg-[#131b2e] p-8 rounded-xl">
+                <div class="flex items-center gap-2 mb-6">
+                    <span class="material-symbols-outlined text-[#bac3ff]" style="font-variation-settings: 'FILL' 1;">target</span>
+                    <h3 class="text-xl font-bold font-headline text-white">Strategic Insights</h3>
+                </div>
+                <div class="space-y-6" id="strategic-insights">
+                    <!-- Filled by JS -->
+                </div>
+                <button class="mt-6 w-full py-3 bg-gradient-to-br from-[#00daf3] to-[#006470] text-white text-xs font-bold uppercase tracking-wider rounded-xl">Generate Deep Strategy</button>
+            </div>
+        </section>
+
+        <!-- Bottom Row -->
+        <section class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <!-- Category Taxonomy -->
+            <div class="bg-[#131b2e] p-8 rounded-xl">
+                <h3 class="text-xl font-bold font-headline text-white mb-6">Category Taxonomy Breakdown</h3>
+                <div class="space-y-6" id="taxonomy-container">
+                    <!-- Filled by JS -->
+                </div>
+            </div>
+
+            <!-- Curated Highlights -->
+            <div class="bg-[#131b2e] p-8 rounded-xl">
+                <h3 class="text-xl font-bold font-headline text-white mb-6">Curated Sentiment Highlights</h3>
+                <div class="space-y-4" id="highlights-container">
+                    <!-- Filled by JS -->
+                </div>
+            </div>
+        </section>
+    </div>
+</main>
+
+<!-- Chatbot Panel -->
+<aside class="fixed right-0 top-0 h-full w-80 bg-[#222a3d]/70 backdrop-blur-2xl z-50 flex flex-col border-l border-[#454652]/10">
+    <div class="p-6 border-b border-[#454652]/10">
+        <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-full bg-[#006470] flex items-center justify-center text-[#00daf3]"><span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">smart_toy</span></div>
+            <div><div class="text-sm font-bold text-white font-headline">Neural Assistant</div><div class="text-[10px] font-bold text-[#00daf3] uppercase tracking-widest">Report Mode</div></div>
+        </div>
+    </div>
+    <div class="flex-1 overflow-y-auto p-6 space-y-6" id="chat-messages">
+        <div class="flex flex-col items-start gap-2">
+            <div class="max-w-[90%] px-4 py-3 bg-[#3a4a5f] text-[#a9bad3] text-xs rounded-2xl rounded-tl-sm shadow-[0px_12px_32px_rgba(0,0,0,0.4)]">
+                <p class="leading-relaxed">I'm in report mode. Ask me to drill into any category, explain trends, or generate improvement strategies.</p>
+            </div>
+        </div>
+    </div>
+    <div class="p-6">
+        <div class="relative">
+            <input id="chat-input" class="w-full bg-[#2d3449] border-none rounded-full py-4 pl-6 pr-12 text-xs focus:ring-2 focus:ring-[#bac3ff]/50 text-white placeholder-slate-500" placeholder="Ask about the report..." type="text" onkeydown="if(event.key==='Enter')sendChatFromInput()"/>
+            <button onclick="sendChatFromInput()" class="absolute right-4 top-1/2 -translate-y-1/2 text-[#bac3ff] hover:text-[#00daf3] transition-colors"><span class="material-symbols-outlined">send</span></button>
+        </div>
+    </div>
+</aside>
+
+<script>
+const priorityLabels = { 'Technical': 'High Priority', 'Pricing': 'Strategic Interest', 'UI/UX': 'Medium Priority', 'Performance': 'High Priority', 'General': 'Low Priority' };
+const priorityColors = { 'High Priority': '#ffb4ab', 'Strategic Interest': '#00daf3', 'Medium Priority': '#bac3ff', 'Low Priority': '#8f909e' };
+
+async function loadReport() {
+    const [statsRes, catRes, reportRes, kwRes] = await Promise.all([
+        fetch('/api/stats'), fetch('/api/categories'), fetch('/api/report'), fetch('/api/keywords')
+    ]);
+    const stats = await statsRes.json();
+    const cats = await catRes.json();
+    const report = await reportRes.json();
+    const keywords = await kwRes.json();
+
+    // Top stats
+    const netScore = ((stats.positive_count / stats.total_feedback) * 100).toFixed(1);
+    document.getElementById('rpt-sentiment').textContent = netScore;
+    document.getElementById('rpt-sentiment-delta').textContent = '+' + stats.net_sentiment + ' vs baseline';
+    document.getElementById('rpt-sentiment-bar').style.width = netScore + '%';
+    document.getElementById('rpt-total').textContent = stats.total_feedback.toLocaleString();
+
+    // Pain point
+    const topIssue = Object.entries(cats).sort((a,b) => b[1].count - a[1].count).filter(e => e[0] !== 'General')[0];
+    if (topIssue) {
+        document.getElementById('rpt-pain-point').textContent = topIssue[0];
+        document.getElementById('rpt-pain-label').textContent = topIssue[0].toUpperCase() + ' CONCERN';
+        document.getElementById('rpt-pain-desc').textContent = `Impacting ${topIssue[1].percentage}% of feedback entries.`;
+    }
+
+    // Taxonomy
+    const taxContainer = document.getElementById('taxonomy-container');
+    taxContainer.innerHTML = '';
+    const sortedCats = Object.entries(cats).sort((a,b) => b[1].count - a[1].count);
+    const barColors = { 'Technical': '#bac3ff', 'Pricing': '#00daf3', 'UI/UX': '#b7c8e1', 'Performance': '#ffb4ab', 'General': '#8f909e' };
+    sortedCats.forEach(([cat, info]) => {
+        const priority = priorityLabels[cat] || 'Low Priority';
+        const kws = keywords.filter(k => true).slice(0, 3).map(k => k.word.toUpperCase());
+        taxContainer.innerHTML += `
+            <div>
+                <div class="flex justify-between items-baseline mb-2">
+                    <span class="text-sm font-bold text-white">${cat}</span>
+                    <span class="text-xs font-bold text-slate-400">${info.percentage}% &bull; ${priority}</span>
+                </div>
+                <div class="w-full bg-[#222a3d] h-1.5 rounded-full overflow-hidden mb-2">
+                    <div class="h-full rounded-full" style="width:${info.percentage}%; background:${barColors[cat] || '#8f909e'}"></div>
+                </div>
+                <div class="flex gap-2">
+                    ${kws.map(k => `<span class="px-2 py-0.5 bg-[#222a3d] text-[9px] font-bold text-slate-400 rounded">${k}</span>`).join('')}
+                </div>
+            </div>`;
+    });
+
+    // Highlights
+    const hlContainer = document.getElementById('highlights-container');
+    hlContainer.innerHTML = '';
+    report.negative_highlights.forEach(text => {
+        hlContainer.innerHTML += `
+            <div class="bg-[#222a3d] p-5 rounded-xl border-l-2 border-[#ffb4ab]">
+                <div class="flex items-center gap-2 mb-2">
+                    <span class="material-symbols-outlined text-sm text-[#ffb4ab]" style="font-variation-settings: 'FILL' 1;">error</span>
+                    <span class="text-[9px] font-bold text-[#ffb4ab] uppercase tracking-widest">Pain Point Cluster</span>
+                </div>
+                <p class="text-xs text-[#dae2fd] italic leading-relaxed">"${text}"</p>
+                <div class="mt-2 flex justify-end"><span class="text-[9px] font-bold text-[#ffb4ab] bg-[#93000a] px-2 py-0.5 rounded">IMPACT: HIGH</span></div>
+            </div>`;
+    });
+    report.positive_highlights.forEach(text => {
+        hlContainer.innerHTML += `
+            <div class="bg-[#222a3d] p-5 rounded-xl border-l-2 border-[#00daf3]">
+                <div class="flex items-center gap-2 mb-2">
+                    <span class="material-symbols-outlined text-sm text-[#00daf3]" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+                    <span class="text-[9px] font-bold text-[#00daf3] uppercase tracking-widest">Success Story</span>
+                </div>
+                <p class="text-xs text-[#dae2fd] italic leading-relaxed">"${text}"</p>
+                <div class="mt-2 flex justify-end"><span class="text-[9px] font-bold text-[#00daf3] bg-[#006470] px-2 py-0.5 rounded">IMPACT: HIGH</span></div>
+            </div>`;
+    });
+
+    // Strategic insights
+    const insContainer = document.getElementById('strategic-insights');
+    insContainer.innerHTML = '';
+    report.suggestions.slice(0, 4).forEach((s, i) => {
+        const colors = ['#ffb4ab', '#00daf3', '#bac3ff', '#b7c8e1'];
+        const labels = ['PERFORMANCE OPTIMA', 'FEATURE RETENTION', 'PRICING STRATEGY', 'UX IMPROVEMENT'];
+        insContainer.innerHTML += `
+            <div>
+                <div class="text-[9px] font-bold uppercase tracking-widest mb-1" style="color:${colors[i % 4]}">${labels[i % 4]}</div>
+                <p class="text-xs text-[#c5c5d4] leading-relaxed">${s}</p>
+            </div>`;
+    });
+}
+
+// Chat
+function addMessage(role, content) {
+    const container = document.getElementById('chat-messages');
+    const formatted = content.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>').replace(/\n/g, '<br>');
+    const html = role === 'user'
+        ? `<div class="flex flex-col items-end gap-2"><div class="max-w-[90%] px-4 py-3 bg-[#2d3449] text-[#dae2fd] text-xs rounded-2xl rounded-tr-none border border-[#454652]/20">${formatted}</div></div>`
+        : `<div class="flex flex-col items-start gap-2"><div class="max-w-[90%] px-4 py-3 bg-[#3a4a5f] text-[#a9bad3] text-xs rounded-2xl rounded-tl-sm shadow-[0px_12px_32px_rgba(0,0,0,0.4)]"><p class="leading-relaxed">${formatted}</p></div></div>`;
+    container.insertAdjacentHTML('beforeend', html);
+    container.scrollTop = container.scrollHeight;
+}
+async function sendChat(q) { addMessage('user', q); const r = await fetch('/api/chat', { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({query:q}) }); const d = await r.json(); addMessage('bot', d.response); }
+function sendChatFromInput() { const i = document.getElementById('chat-input'); if(!i.value.trim()) return; sendChat(i.value.trim()); i.value=''; }
+
+loadReport();
+</script>
+</body>
+</html>

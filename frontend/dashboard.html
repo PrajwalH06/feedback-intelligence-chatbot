@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Feedback Intelligence | Cognitive Architect</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "on-secondary": "#213145",
+                        "on-background": "#dae2fd",
+                        "error": "#ffb4ab",
+                        "on-primary-fixed": "#00105b",
+                        "on-primary-container": "#c9cfff",
+                        "tertiary-fixed-dim": "#00daf3",
+                        "tertiary-fixed": "#9cf0ff",
+                        "primary-fixed-dim": "#bac3ff",
+                        "on-error-container": "#ffdad6",
+                        "surface": "#0b1326",
+                        "surface-container-lowest": "#060e20",
+                        "on-primary": "#15267b",
+                        "on-surface-variant": "#c5c5d4",
+                        "surface-container-high": "#222a3d",
+                        "surface-container": "#171f33",
+                        "background": "#0b1326",
+                        "surface-variant": "#2d3449",
+                        "secondary": "#b7c8e1",
+                        "surface-dim": "#0b1326",
+                        "primary-container": "#4453a7",
+                        "secondary-fixed": "#d3e4fe",
+                        "on-error": "#690005",
+                        "inverse-surface": "#dae2fd",
+                        "outline-variant": "#454652",
+                        "secondary-fixed-dim": "#b7c8e1",
+                        "surface-tint": "#bac3ff",
+                        "outline": "#8f909e",
+                        "surface-bright": "#31394d",
+                        "on-tertiary-container": "#31e6ff",
+                        "surface-container-highest": "#2d3449",
+                        "inverse-primary": "#4858ab",
+                        "error-container": "#93000a",
+                        "tertiary": "#00daf3",
+                        "on-tertiary": "#00363d",
+                        "on-surface": "#dae2fd",
+                        "secondary-container": "#3a4a5f",
+                        "primary": "#bac3ff",
+                        "surface-container-low": "#131b2e",
+                        "on-secondary-container": "#a9bad3",
+                        "primary-fixed": "#dee0ff",
+                        "tertiary-container": "#006470"
+                    },
+                    borderRadius: { DEFAULT: "0.125rem", lg: "0.25rem", xl: "0.5rem", full: "0.75rem" },
+                    fontFamily: { headline: ["Manrope"], body: ["Inter"], label: ["Inter"] }
+                },
+            },
+        }
+    </script>
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #0b1326; color: #dae2fd; }
+        .font-headline { font-family: 'Manrope', sans-serif; }
+        .glass-panel { background: rgba(34, 42, 61, 0.7); backdrop-filter: blur(24px); }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        ::-webkit-scrollbar { width: 4px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: #222a3d; border-radius: 10px; }
+        .nav-active { color: #bac3ff; font-weight: 700; border-right: 2px solid #bac3ff; background: #222a3d; }
+        @keyframes pulse-dot { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
+        .animate-pulse-dot { animation: pulse-dot 2s ease-in-out infinite; }
+    </style>
+</head>
+<body class="flex min-h-screen overflow-hidden">
+
+<!-- Sidebar -->
+<nav class="fixed left-0 top-0 h-full z-40 flex flex-col w-64 bg-[#131b2e]">
+    <div class="p-6">
+        <div class="text-xl font-bold text-[#bac3ff] tracking-tight font-headline">Feedback Intelligence</div>
+        <div class="text-[10px] uppercase tracking-[0.05em] text-slate-500 font-medium mt-1">AI Model v2.4.1</div>
+    </div>
+    <div class="mt-8 flex-1 space-y-1 px-4">
+        <a class="nav-active flex items-center gap-3 px-4 py-3 transition-colors duration-200" href="/">
+            <span class="material-symbols-outlined">dashboard</span>
+            <span class="text-xs uppercase tracking-[0.05em] font-headline">Dashboard</span>
+        </a>
+        <a class="flex items-center gap-3 px-4 py-3 text-slate-400 font-medium hover:text-white hover:bg-[#222a3d] transition-colors duration-200" href="/dataset">
+            <span class="material-symbols-outlined">database</span>
+            <span class="text-xs uppercase tracking-[0.05em] font-headline">Dataset</span>
+        </a>
+        <a class="flex items-center gap-3 px-4 py-3 text-slate-400 font-medium hover:text-white hover:bg-[#222a3d] transition-colors duration-200" href="/training">
+            <span class="material-symbols-outlined">model_training</span>
+            <span class="text-xs uppercase tracking-[0.05em] font-headline">Model Training</span>
+        </a>
+        <a class="flex items-center gap-3 px-4 py-3 text-slate-400 font-medium hover:text-white hover:bg-[#222a3d] transition-colors duration-200" href="/reports">
+            <span class="material-symbols-outlined">analytics</span>
+            <span class="text-xs uppercase tracking-[0.05em] font-headline">Reports</span>
+        </a>
+    </div>
+    <div class="p-6">
+        <button onclick="window.location.href='/'" class="w-full bg-gradient-to-br from-[#bac3ff] to-[#4453a7] text-[#00105b] font-bold py-3 px-4 rounded-xl text-xs uppercase tracking-wider flex items-center justify-center gap-2">
+            <span class="material-symbols-outlined text-sm">add</span> New Analysis
+        </button>
+        <div class="mt-6 flex items-center gap-3 px-2">
+            <div class="w-10 h-10 rounded-full bg-[#222a3d] flex items-center justify-center">
+                <span class="material-symbols-outlined text-[#bac3ff]">person</span>
+            </div>
+            <div>
+                <div class="text-xs font-bold text-white">Admin Core</div>
+                <div class="text-[10px] text-slate-400">System Oversight</div>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<!-- Main Content -->
+<main class="ml-64 mr-80 flex-1 h-screen overflow-y-auto bg-surface relative">
+    <!-- Top Nav -->
+    <header class="flex items-center justify-between px-8 w-full h-16 sticky top-0 bg-[#0b1326]/80 backdrop-blur-xl z-30">
+        <div class="flex items-center gap-8">
+            <div class="text-lg font-black text-white font-headline">Cognitive Architect</div>
+            <div class="hidden md:flex items-center gap-6 text-[10px] font-bold uppercase tracking-widest">
+                <span class="text-[#00daf3] border-b-2 border-[#00daf3] pb-1" id="model-status-label">Model Status: Active</span>
+                <span class="text-slate-300">Local: 100%</span>
+            </div>
+        </div>
+        <div class="flex items-center gap-5">
+            <div class="relative group">
+                <span class="material-symbols-outlined text-slate-300 hover:text-[#00daf3] cursor-pointer transition-all hover:scale-110">notifications</span>
+                <span class="absolute -top-1 -right-1 w-2 h-2 bg-[#ffb4ab] rounded-full"></span>
+            </div>
+            <span class="material-symbols-outlined text-slate-300 hover:text-[#00daf3] cursor-pointer transition-all hover:scale-110">settings</span>
+        </div>
+    </header>
+
+    <div class="p-8 space-y-8">
+        <!-- Neural Health Section -->
+        <section>
+            <div class="flex items-end justify-between mb-6">
+                <div>
+                    <h2 class="text-3xl font-extrabold font-headline text-white tracking-tight">Neural Health</h2>
+                    <p class="text-sm text-[#c5c5d4] font-medium">Real-time inference stability & sentiment velocity</p>
+                </div>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Card 1: Total Feedback -->
+                <div class="bg-[#222a3d] p-6 rounded-xl relative overflow-hidden group">
+                    <div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+                        <span class="material-symbols-outlined text-6xl">forum</span>
+                    </div>
+                    <div class="text-[10px] font-bold text-[#c5c5d4] uppercase tracking-[0.1em] mb-4">Total Feedback</div>
+                    <div class="text-4xl font-headline font-extrabold text-white" id="stat-total">--</div>
+                    <div class="mt-4 flex items-center gap-2 text-[10px] font-bold text-[#00daf3]">
+                        <span class="material-symbols-outlined text-xs">trending_up</span>
+                        <span>+12.4% THIS WEEK</span>
+                    </div>
+                </div>
+                <!-- Card 2: Model Accuracy -->
+                <div class="bg-[#222a3d] p-6 rounded-xl relative overflow-hidden group">
+                    <div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+                        <span class="material-symbols-outlined text-6xl">model_training</span>
+                    </div>
+                    <div class="text-[10px] font-bold text-[#c5c5d4] uppercase tracking-[0.1em] mb-4">Model Accuracy</div>
+                    <div class="text-4xl font-headline font-extrabold text-[#00daf3]" id="stat-accuracy">--</div>
+                    <div class="mt-4 flex items-center gap-2 text-[10px] font-bold text-slate-400" id="stat-model-name">--</div>
+                </div>
+                <!-- Card 3: Sentiment Score -->
+                <div class="bg-[#222a3d] p-6 rounded-xl relative overflow-hidden group">
+                    <div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+                        <span class="material-symbols-outlined text-6xl">sentiment_satisfied</span>
+                    </div>
+                    <div class="text-[10px] font-bold text-[#c5c5d4] uppercase tracking-[0.1em] mb-4">Sentiment Score</div>
+                    <div class="text-4xl font-headline font-extrabold text-white" id="stat-sentiment">--</div>
+                    <div class="mt-4 flex items-center gap-2 text-[10px] font-bold text-[#bac3ff]">
+                        <span class="material-symbols-outlined text-xs" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+                        <span id="stat-sentiment-label">POSITIVE BASELINE</span>
+                    </div>
+                </div>
+                <!-- Card 4: Pending Issues -->
+                <div class="bg-[#222a3d] p-6 rounded-xl relative overflow-hidden group">
+                    <div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+                        <span class="material-symbols-outlined text-6xl">warning</span>
+                    </div>
+                    <div class="text-[10px] font-bold text-[#c5c5d4] uppercase tracking-[0.1em] mb-4">Critical Issues</div>
+                    <div class="text-4xl font-headline font-extrabold text-white" id="stat-critical">--</div>
+                    <div class="mt-4 flex items-center gap-2 text-[10px] font-bold text-[#ffb4ab]">REQUIRES ATTENTION</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Charts Section -->
+        <section class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <!-- Sentiment Velocity -->
+            <div class="lg:col-span-2 bg-[#131b2e] p-8 rounded-xl">
+                <div class="flex items-center justify-between mb-10">
+                    <div>
+                        <h3 class="text-xl font-bold font-headline text-white">Sentiment Velocity</h3>
+                        <div class="text-[10px] font-bold text-slate-400 uppercase tracking-widest mt-1">7-Day Trajectory</div>
+                    </div>
+                    <div class="flex gap-2">
+                        <span class="px-3 py-1 bg-[#222a3d] rounded-full text-[10px] font-bold text-white cursor-pointer">1D</span>
+                        <span class="px-3 py-1 bg-[#bac3ff] text-[#00105b] rounded-full text-[10px] font-bold cursor-pointer">7D</span>
+                        <span class="px-3 py-1 bg-[#222a3d] rounded-full text-[10px] font-bold text-white cursor-pointer">1M</span>
+                    </div>
+                </div>
+                <div class="h-64 flex items-end gap-1 relative overflow-hidden">
+                    <svg class="absolute inset-0 w-full h-full" preserveAspectRatio="none" id="velocity-chart">
+                        <defs>
+                            <linearGradient id="chartGradient" x1="0%" x2="0%" y1="0%" y2="100%">
+                                <stop offset="0%" style="stop-color:#00daf3;stop-opacity:0.2"></stop>
+                                <stop offset="100%" style="stop-color:#00daf3;stop-opacity:0"></stop>
+                            </linearGradient>
+                        </defs>
+                        <path d="M0 200 Q 50 150, 100 180 T 200 100 T 300 120 T 400 60 T 500 90 T 600 40 T 700 80 V 256 H 0 Z" fill="url(#chartGradient)"></path>
+                        <path d="M0 200 Q 50 150, 100 180 T 200 100 T 300 120 T 400 60 T 500 90 T 600 40 T 700 80" fill="none" stroke="#00daf3" stroke-width="2"></path>
+                    </svg>
+                    <div class="absolute bottom-0 left-0 w-full flex justify-between px-2 text-[10px] text-slate-500 font-bold uppercase">
+                        <span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span><span>Sun</span>
+                    </div>
+                </div>
+            </div>
+            <!-- Categorical Analysis -->
+            <div class="bg-[#131b2e] p-8 rounded-xl">
+                <h3 class="text-xl font-bold font-headline text-white mb-2">Categorical Analysis</h3>
+                <div class="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-8">Intensity Distribution</div>
+                <div id="categories-container" class="w-full space-y-4">
+                    <!-- Filled by JS -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Live Inference Stream -->
+        <section class="bg-[#131b2e] rounded-xl overflow-hidden">
+            <div class="px-8 py-6 border-b border-[#454652]/10 flex items-center justify-between">
+                <h3 class="text-xl font-bold font-headline text-white">Live Inference Stream</h3>
+                <div class="flex items-center gap-4">
+                    <div class="flex items-center gap-2">
+                        <span class="w-2 h-2 bg-[#00daf3] rounded-full animate-pulse-dot"></span>
+                        <span class="text-[10px] font-bold text-slate-400">MONITORING</span>
+                    </div>
+                    <button class="text-[10px] font-bold text-[#bac3ff] flex items-center gap-1">
+                        VIEW ALL <span class="material-symbols-outlined text-xs">arrow_forward</span>
+                    </button>
+                </div>
+            </div>
+            <div id="inference-stream" class="divide-y divide-[#454652]/10">
+                <!-- Filled by JS -->
+            </div>
+        </section>
+    </div>
+</main>
+
+<!-- Chatbot Panel -->
+<aside class="fixed right-0 top-0 h-full w-80 bg-[#222a3d]/70 backdrop-blur-2xl z-50 flex flex-col border-l border-[#454652]/10">
+    <div class="p-6 border-b border-[#454652]/10">
+        <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-full bg-[#006470] flex items-center justify-center text-[#00daf3]">
+                <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">smart_toy</span>
+            </div>
+            <div>
+                <div class="text-sm font-bold text-white font-headline">Neural Assistant</div>
+                <div class="text-[10px] font-bold text-[#00daf3] uppercase tracking-widest">Cognitive Core Active</div>
+            </div>
+        </div>
+    </div>
+    <div class="flex-1 overflow-y-auto p-6 space-y-6" id="chat-messages">
+        <!-- AI Welcome -->
+        <div class="flex flex-col items-start gap-2">
+            <div class="max-w-[90%] px-4 py-3 bg-[#3a4a5f] text-[#a9bad3] text-xs rounded-2xl rounded-tl-sm shadow-[0px_12px_32px_rgba(0,0,0,0.4)]">
+                <p class="leading-relaxed">Hello! I'm your local AI assistant. Ask me about issues, pricing, sentiment, or what to improve. All analysis runs locally.</p>
+            </div>
+            <div class="text-[9px] font-bold text-slate-500">AI Core • Just now</div>
+        </div>
+    </div>
+    <div class="p-6 space-y-4">
+        <div class="flex flex-wrap gap-2" id="suggested-queries">
+            <button onclick="sendChat('What are the main issues?')" class="px-3 py-1.5 bg-[#222a3d] hover:bg-white/10 transition-colors text-[9px] font-bold text-[#c5c5d4] rounded-full uppercase border border-[#454652]/20">Issues</button>
+            <button onclick="sendChat('Show pricing complaints')" class="px-3 py-1.5 bg-[#222a3d] hover:bg-white/10 transition-colors text-[9px] font-bold text-[#c5c5d4] rounded-full uppercase border border-[#454652]/20">Pricing</button>
+            <button onclick="sendChat('What should we improve?')" class="px-3 py-1.5 bg-[#222a3d] hover:bg-white/10 transition-colors text-[9px] font-bold text-[#c5c5d4] rounded-full uppercase border border-[#454652]/20">Improve</button>
+            <button onclick="sendChat('Give me a summary report')" class="px-3 py-1.5 bg-[#222a3d] hover:bg-white/10 transition-colors text-[9px] font-bold text-[#c5c5d4] rounded-full uppercase border border-[#454652]/20">Summary</button>
+        </div>
+        <div class="relative">
+            <input id="chat-input" class="w-full bg-[#2d3449] border-none rounded-full py-4 pl-6 pr-12 text-xs focus:ring-2 focus:ring-[#bac3ff]/50 text-white placeholder-slate-500 transition-all" placeholder="Query the intelligence..." type="text" onkeydown="if(event.key==='Enter')sendChatFromInput()"/>
+            <button onclick="sendChatFromInput()" class="absolute right-4 top-1/2 -translate-y-1/2 text-[#bac3ff] hover:text-[#00daf3] transition-colors">
+                <span class="material-symbols-outlined">send</span>
+            </button>
+        </div>
+    </div>
+</aside>
+
+<script>
+// ── Load Dashboard Data ──
+async function loadStats() {
+    const res = await fetch('/api/stats');
+    const data = await res.json();
+    document.getElementById('stat-total').textContent = data.total_feedback.toLocaleString();
+    document.getElementById('stat-accuracy').textContent = data.model_accuracy + '%';
+    document.getElementById('stat-model-name').textContent = data.model_name.toUpperCase();
+    const score = (data.positive_count / data.total_feedback).toFixed(2);
+    document.getElementById('stat-sentiment').textContent = score;
+    document.getElementById('stat-sentiment-label').textContent = data.net_sentiment > 0 ? 'POSITIVE BASELINE' : 'NEEDS IMPROVEMENT';
+    document.getElementById('stat-critical').textContent = data.critical_issues;
+}
+
+async function loadCategories() {
+    const res = await fetch('/api/categories');
+    const data = await res.json();
+    const container = document.getElementById('categories-container');
+    const colors = { 'Technical': '#bac3ff', 'Performance': '#b7c8e1', 'Pricing': '#00daf3', 'UI/UX': '#bac3ff', 'General': '#8f909e' };
+    container.innerHTML = '';
+    for (const [cat, info] of Object.entries(data)) {
+        container.innerHTML += `
+            <div class="space-y-1">
+                <div class="flex justify-between text-[10px] font-bold text-[#c5c5d4]">
+                    <span>${cat.toUpperCase()}</span><span>${info.percentage}%</span>
+                </div>
+                <div class="w-full bg-[#222a3d] h-2 rounded-full overflow-hidden">
+                    <div class="h-full rounded-full" style="width:${info.percentage}%; background:${colors[cat] || '#8f909e'}"></div>
+                </div>
+            </div>`;
+    }
+}
+
+async function loadInferenceStream() {
+    const res = await fetch('/api/feedback');
+    const data = await res.json();
+    const container = document.getElementById('inference-stream');
+    container.innerHTML = '';
+    const timeLabels = ['2M AGO', '5M AGO', '12M AGO', '18M AGO', '25M AGO', '30M AGO', '45M AGO', '1H AGO', '2H AGO', '3H AGO'];
+    const sentColors = { 'positive': { bg: '#006470', text: '#00daf3', label: 'POSITIVE' }, 'negative': { bg: '#93000a', text: '#ffb4ab', label: 'NEGATIVE' }, 'neutral': { bg: '#2d3449', text: '#c5c5d4', label: 'NEUTRAL' } };
+    data.slice(0, 10).forEach((item, i) => {
+        const s = sentColors[item.predicted] || sentColors.neutral;
+        container.innerHTML += `
+            <div class="px-8 py-5 flex items-center gap-6 hover:bg-[#222a3d]/50 transition-colors cursor-pointer group">
+                <div class="w-12 text-[10px] font-bold text-slate-500 uppercase">${timeLabels[i] || ''}</div>
+                <div class="flex-1">
+                    <div class="text-sm font-medium text-[#dae2fd]">"${item.text}"</div>
+                </div>
+                <div class="flex items-center gap-3">
+                    <span class="px-2 py-1 rounded text-[9px] font-bold uppercase tracking-tighter" style="background:${s.bg}; color:${s.text}">[${s.label}]</span>
+                    <span class="px-2 py-1 bg-[#2d3449] text-[#c5c5d4] rounded text-[9px] font-bold uppercase tracking-tighter">[${item.issue}]</span>
+                </div>
+                <div class="w-24 text-right">
+                    <div class="text-[10px] text-slate-500 uppercase font-bold">Confidence</div>
+                    <div class="text-xs font-bold text-[#00daf3]">${item.confidence}</div>
+                </div>
+            </div>`;
+    });
+}
+
+// ── Chatbot ──
+function addMessage(role, content) {
+    const container = document.getElementById('chat-messages');
+    const isUser = role === 'user';
+    // Convert markdown-like formatting
+    const formatted = content.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>').replace(/\n/g, '<br>');
+    const html = isUser
+        ? `<div class="flex flex-col items-end gap-2">
+               <div class="max-w-[90%] px-4 py-3 bg-[#2d3449] text-[#dae2fd] text-xs rounded-2xl rounded-tr-none border border-[#454652]/20">${formatted}</div>
+               <div class="text-[9px] font-bold text-slate-500">You • Just now</div>
+           </div>`
+        : `<div class="flex flex-col items-start gap-2">
+               <div class="max-w-[90%] px-4 py-3 bg-[#3a4a5f] text-[#a9bad3] text-xs rounded-2xl rounded-tl-sm shadow-[0px_12px_32px_rgba(0,0,0,0.4)]">
+                   <p class="leading-relaxed">${formatted}</p>
+               </div>
+               <div class="text-[9px] font-bold text-slate-500">Neural Bot • Just now</div>
+           </div>`;
+    container.insertAdjacentHTML('beforeend', html);
+    container.scrollTop = container.scrollHeight;
+}
+
+async function sendChat(query) {
+    addMessage('user', query);
+    const res = await fetch('/api/chat', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ query }) });
+    const data = await res.json();
+    addMessage('bot', data.response);
+}
+
+function sendChatFromInput() {
+    const input = document.getElementById('chat-input');
+    const val = input.value.trim();
+    if (!val) return;
+    input.value = '';
+    sendChat(val);
+}
+
+// ── Init ──
+loadStats();
+loadCategories();
+loadInferenceStream();
+</script>
+</body>
+</html>
