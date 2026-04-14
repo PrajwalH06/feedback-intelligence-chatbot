@@ -1,0 +1,452 @@
+text,label
+"The app is absolutely amazing and easy to use",positive
+"Terrible experience, it crashed five times today",negative
+"The interface looks okay, nothing special",neutral
+"Very slow loading times, extremely frustrating",negative
+"Customer support was incredibly helpful and fast",positive
+"Too expensive for what it offers",negative
+"I love the new dark mode feature",positive
+"The app keeps freezing on my phone",negative
+"Decent product, does what it says",neutral
+"Best purchase I've made this year",positive
+"Bugs everywhere, completely unusable",negative
+"The onboarding process is smooth and intuitive",positive
+"Pricing is way too high for basic features",negative
+"Works fine, nothing extraordinary",neutral
+"Absolutely love the AI-powered suggestions",positive
+"App crashes every time I open the settings",negative
+"Great user interface and modern design",positive
+"The billing system charged me twice",negative
+"It's an average tool, gets the job done",neutral
+"Fantastic performance on all my devices",positive
+"The update broke everything, total disaster",negative
+"Navigation is confusing and hard to find things",negative
+"Really impressed with the speed improvements",positive
+"Not worth the money, too many limitations",negative
+"Clean design and easy navigation",positive
+"Error messages are not helpful at all",negative
+"The product meets my basic needs",neutral
+"Outstanding quality and attention to detail",positive
+"Lag spikes make it completely unusable during peak hours",negative
+"Pretty standard software, nothing to complain about",neutral
+"The AI features are game-changing for my workflow",positive
+"Customer service never responds to my tickets",negative
+"Simple and effective, I like it",positive
+"The mobile app is painfully slow",negative
+"Good value for the premium tier",positive
+"Integration with other tools is broken",negative
+"The dashboard is well organized",positive
+"Constant crashes on the latest Android version",negative
+"It works but could be better",neutral
+"The search functionality is incredibly fast",positive
+"Overpriced compared to competitors",negative
+"I enjoy using this product daily",positive
+"The export feature has multiple bugs",negative
+"Neither good nor bad, just functional",neutral
+"Excellent documentation and tutorials",positive
+"The app drains my battery extremely fast",negative
+"Smooth experience from start to finish",positive
+"Too many ads in the free version",negative
+"The reporting features are very useful",positive
+"Login keeps failing with authentication errors",negative
+"It does what I need, nothing more",neutral
+"Revolutionary product, changed how I work",positive
+"The UI feels outdated and clunky",negative
+"Responsive design works great on all screens",positive
+"Performance degrades significantly with large datasets",negative
+"Fair pricing for the features offered",neutral
+"The collaboration features are incredible",positive
+"My data was lost after the latest update",negative
+"Pretty good app overall",neutral
+"The notification system is very helpful",positive
+"Subscription model is terrible and confusing",negative
+"The charts and analytics are beautiful",positive
+"Cannot connect to the server half the time",negative
+"Standard tool, does the basics well",neutral
+"The real-time sync feature is flawless",positive
+"The app is way too expensive for students",negative
+"Overall a solid and reliable product",positive
+"The color scheme hurts my eyes",negative
+"Nice features but nothing groundbreaking",neutral
+"Amazingly fast and responsive interface",positive
+"Crashes whenever I upload large files",negative
+"Decent performance on most tasks",neutral
+"The machine learning features are top notch",positive
+"Billing errors keep happening every month",negative
+"It's okay, I've seen better alternatives",neutral
+"Super easy setup and configuration",positive
+"The help section is completely useless",negative
+"Meets expectations, no complaints",neutral
+"The dark theme is elegant and professional",positive
+"Extremely laggy on older devices",negative
+"A reliable tool for everyday use",positive
+"The pricing tiers are confusing and misleading",negative
+"Gets the job done without any fuss",neutral
+"I recommend this to everyone on my team",positive
+"So many bugs after the last update",negative
+"The API documentation is comprehensive and clear",positive
+"Loading screens take forever",negative
+"Average product with average features",neutral
+"The speed optimization is remarkable",positive
+"Error 500 appears randomly throughout the day",negative
+"I have no strong feelings about this product",neutral
+"Perfect for small businesses and startups",positive
+"The worst customer support I've ever experienced",negative
+"Functional but uninspiring design",neutral
+"Incredible value for the price point",positive
+"Memory leaks cause the app to slow down over time",negative
+"The product is fine for casual use",neutral
+"Beautifully crafted user experience",positive
+"The desktop version keeps crashing on Windows",negative
+"Moderately useful for my workflow",neutral
+"The team collaboration features are unmatched",positive
+"Way too many permission requests on mobile",negative
+"The product is stable and dependable",positive
+"Cost keeps increasing without new features",negative
+"The export to PDF feature works perfectly",positive
+"Navigation menu is broken on mobile browsers",negative
+"Just an ordinary software tool",neutral
+"The AI chatbot integration is brilliant",positive
+"Performance issues make it frustrating to use",negative
+"Satisfactory experience overall",neutral
+"Lightning fast response times across all platforms",positive
+"The free tier is basically useless",negative
+text,label
+"The app is absolutely amazing and easy to use",positive
+"Terrible experience, it crashed five times today",negative
+"The interface looks okay, nothing special",neutral
+"Very slow loading times, extremely frustrating",negative
+"Customer support was incredibly helpful and fast",positive
+"Too expensive for what it offers",negative
+"I love the new dark mode feature",positive
+"The app keeps freezing on my phone",negative
+"Decent product, does what it says",neutral
+"Best purchase I've made this year",positive
+"Bugs everywhere, completely unusable",negative
+"The onboarding process is smooth and intuitive",positive
+"Pricing is way too high for basic features",negative
+"Works fine, nothing extraordinary",neutral
+"Absolutely love the AI-powered suggestions",positive
+"App crashes every time I open the settings",negative
+"Great user interface and modern design",positive
+"The billing system charged me twice",negative
+"It's an average tool, gets the job done",neutral
+"Fantastic performance on all my devices",positive
+"The update broke everything, total disaster",negative
+"Navigation is confusing and hard to find things",negative
+"Really impressed with the speed improvements",positive
+"Not worth the money, too many limitations",negative
+"Clean design and easy navigation",positive
+"Error messages are not helpful at all",negative
+"The product meets my basic needs",neutral
+"Outstanding quality and attention to detail",positive
+"Lag spikes make it completely unusable during peak hours",negative
+"Pretty standard software, nothing to complain about",neutral
+"The AI features are game-changing for my workflow",positive
+"Customer service never responds to my tickets",negative
+"Simple and effective, I like it",positive
+"The mobile app is painfully slow",negative
+"Good value for the premium tier",positive
+"Integration with other tools is broken",negative
+"The dashboard is well organized",positive
+"Constant crashes on the latest Android version",negative
+"It works but could be better",neutral
+"The search functionality is incredibly fast",positive
+"Overpriced compared to competitors",negative
+"I enjoy using this product daily",positive
+"The export feature has multiple bugs",negative
+"Neither good nor bad, just functional",neutral
+"Excellent documentation and tutorials",positive
+"The app drains my battery extremely fast",negative
+"Smooth experience from start to finish",positive
+"Too many ads in the free version",negative
+"The reporting features are very useful",positive
+"Login keeps failing with authentication errors",negative
+"It does what I need, nothing more",neutral
+"Revolutionary product, changed how I work",positive
+"The UI feels outdated and clunky",negative
+"Responsive design works great on all screens",positive
+"Performance degrades significantly with large datasets",negative
+"Fair pricing for the features offered",neutral
+"The collaboration features are incredible",positive
+"My data was lost after the latest update",negative
+"Pretty good app overall",neutral
+"The notification system is very helpful",positive
+"Subscription model is terrible and confusing",negative
+"The charts and analytics are beautiful",positive
+"Cannot connect to the server half the time",negative
+"Standard tool, does the basics well",neutral
+"The real-time sync feature is flawless",positive
+"The app is way too expensive for students",negative
+"Overall a solid and reliable product",positive
+"The color scheme hurts my eyes",negative
+"Nice features but nothing groundbreaking",neutral
+"Amazingly fast and responsive interface",positive
+"Crashes whenever I upload large files",negative
+"Decent performance on most tasks",neutral
+"The machine learning features are top notch",positive
+"Billing errors keep happening every month",negative
+"It's okay, I've seen better alternatives",neutral
+"Super easy setup and configuration",positive
+"The help section is completely useless",negative
+"Meets expectations, no complaints",neutral
+"The dark theme is elegant and professional",positive
+"Extremely laggy on older devices",negative
+"A reliable tool for everyday use",positive
+"The pricing tiers are confusing and misleading",negative
+"Gets the job done without any fuss",neutral
+"I recommend this to everyone on my team",positive
+"So many bugs after the last update",negative
+"The API documentation is comprehensive and clear",positive
+"Loading screens take forever",negative
+"Average product with average features",neutral
+"The speed optimization is remarkable",positive
+"Error 500 appears randomly throughout the day",negative
+"I have no strong feelings about this product",neutral
+"Perfect for small businesses and startups",positive
+"The worst customer support I've ever experienced",negative
+"Functional but uninspiring design",neutral
+"Incredible value for the price point",positive
+"Memory leaks cause the app to slow down over time",negative
+"The product is fine for casual use",neutral
+"Beautifully crafted user experience",positive
+"The desktop version keeps crashing on Windows",negative
+"Moderately useful for my workflow",neutral
+"The team collaboration features are unmatched",positive
+"Way too many permission requests on mobile",negative
+"The product is stable and dependable",positive
+"Cost keeps increasing without new features",negative
+"The export to PDF feature works perfectly",positive
+"Navigation menu is broken on mobile browsers",negative
+"Just an ordinary software tool",neutral
+"The AI chatbot integration is brilliant",positive
+"Performance issues make it frustrating to use",negative
+"Satisfactory experience overall",neutral
+"Lightning fast response times across all platforms",positive
+"The free tier is basically useless",negative
+text,label
+"The app is absolutely amazing and easy to use",positive
+"Terrible experience, it crashed five times today",negative
+"The interface looks okay, nothing special",neutral
+"Very slow loading times, extremely frustrating",negative
+"Customer support was incredibly helpful and fast",positive
+"Too expensive for what it offers",negative
+"I love the new dark mode feature",positive
+"The app keeps freezing on my phone",negative
+"Decent product, does what it says",neutral
+"Best purchase I've made this year",positive
+"Bugs everywhere, completely unusable",negative
+"The onboarding process is smooth and intuitive",positive
+"Pricing is way too high for basic features",negative
+"Works fine, nothing extraordinary",neutral
+"Absolutely love the AI-powered suggestions",positive
+"App crashes every time I open the settings",negative
+"Great user interface and modern design",positive
+"The billing system charged me twice",negative
+"It's an average tool, gets the job done",neutral
+"Fantastic performance on all my devices",positive
+"The update broke everything, total disaster",negative
+"Navigation is confusing and hard to find things",negative
+"Really impressed with the speed improvements",positive
+"Not worth the money, too many limitations",negative
+"Clean design and easy navigation",positive
+"Error messages are not helpful at all",negative
+"The product meets my basic needs",neutral
+"Outstanding quality and attention to detail",positive
+"Lag spikes make it completely unusable during peak hours",negative
+"Pretty standard software, nothing to complain about",neutral
+"The AI features are game-changing for my workflow",positive
+"Customer service never responds to my tickets",negative
+"Simple and effective, I like it",positive
+"The mobile app is painfully slow",negative
+"Good value for the premium tier",positive
+"Integration with other tools is broken",negative
+"The dashboard is well organized",positive
+"Constant crashes on the latest Android version",negative
+"It works but could be better",neutral
+"The search functionality is incredibly fast",positive
+"Overpriced compared to competitors",negative
+"I enjoy using this product daily",positive
+"The export feature has multiple bugs",negative
+"Neither good nor bad, just functional",neutral
+"Excellent documentation and tutorials",positive
+"The app drains my battery extremely fast",negative
+"Smooth experience from start to finish",positive
+"Too many ads in the free version",negative
+"The reporting features are very useful",positive
+"Login keeps failing with authentication errors",negative
+"It does what I need, nothing more",neutral
+"Revolutionary product, changed how I work",positive
+"The UI feels outdated and clunky",negative
+"Responsive design works great on all screens",positive
+"Performance degrades significantly with large datasets",negative
+"Fair pricing for the features offered",neutral
+"The collaboration features are incredible",positive
+"My data was lost after the latest update",negative
+"Pretty good app overall",neutral
+"The notification system is very helpful",positive
+"Subscription model is terrible and confusing",negative
+"The charts and analytics are beautiful",positive
+"Cannot connect to the server half the time",negative
+"Standard tool, does the basics well",neutral
+"The real-time sync feature is flawless",positive
+"The app is way too expensive for students",negative
+"Overall a solid and reliable product",positive
+"The color scheme hurts my eyes",negative
+"Nice features but nothing groundbreaking",neutral
+"Amazingly fast and responsive interface",positive
+"Crashes whenever I upload large files",negative
+"Decent performance on most tasks",neutral
+"The machine learning features are top notch",positive
+"Billing errors keep happening every month",negative
+"It's okay, I've seen better alternatives",neutral
+"Super easy setup and configuration",positive
+"The help section is completely useless",negative
+"Meets expectations, no complaints",neutral
+"The dark theme is elegant and professional",positive
+"Extremely laggy on older devices",negative
+"A reliable tool for everyday use",positive
+"The pricing tiers are confusing and misleading",negative
+"Gets the job done without any fuss",neutral
+"I recommend this to everyone on my team",positive
+"So many bugs after the last update",negative
+"The API documentation is comprehensive and clear",positive
+"Loading screens take forever",negative
+"Average product with average features",neutral
+"The speed optimization is remarkable",positive
+"Error 500 appears randomly throughout the day",negative
+"I have no strong feelings about this product",neutral
+"Perfect for small businesses and startups",positive
+"The worst customer support I've ever experienced",negative
+"Functional but uninspiring design",neutral
+"Incredible value for the price point",positive
+"Memory leaks cause the app to slow down over time",negative
+"The product is fine for casual use",neutral
+"Beautifully crafted user experience",positive
+"The desktop version keeps crashing on Windows",negative
+"Moderately useful for my workflow",neutral
+"The team collaboration features are unmatched",positive
+"Way too many permission requests on mobile",negative
+"The product is stable and dependable",positive
+"Cost keeps increasing without new features",negative
+"The export to PDF feature works perfectly",positive
+"Navigation menu is broken on mobile browsers",negative
+"Just an ordinary software tool",neutral
+"The AI chatbot integration is brilliant",positive
+"Performance issues make it frustrating to use",negative
+"Satisfactory experience overall",neutral
+"Lightning fast response times across all platforms",positive
+"The free tier is basically useless",negative
+text,label
+"The app is absolutely amazing and easy to use",positive
+"Terrible experience, it crashed five times today",negative
+"The interface looks okay, nothing special",neutral
+"Very slow loading times, extremely frustrating",negative
+"Customer support was incredibly helpful and fast",positive
+"Too expensive for what it offers",negative
+"I love the new dark mode feature",positive
+"The app keeps freezing on my phone",negative
+"Decent product, does what it says",neutral
+"Best purchase I've made this year",positive
+"Bugs everywhere, completely unusable",negative
+"The onboarding process is smooth and intuitive",positive
+"Pricing is way too high for basic features",negative
+"Works fine, nothing extraordinary",neutral
+"Absolutely love the AI-powered suggestions",positive
+"App crashes every time I open the settings",negative
+"Great user interface and modern design",positive
+"The billing system charged me twice",negative
+"It's an average tool, gets the job done",neutral
+"Fantastic performance on all my devices",positive
+"The update broke everything, total disaster",negative
+"Navigation is confusing and hard to find things",negative
+"Really impressed with the speed improvements",positive
+"Not worth the money, too many limitations",negative
+"Clean design and easy navigation",positive
+"Error messages are not helpful at all",negative
+"The product meets my basic needs",neutral
+"Outstanding quality and attention to detail",positive
+"Lag spikes make it completely unusable during peak hours",negative
+"Pretty standard software, nothing to complain about",neutral
+"The AI features are game-changing for my workflow",positive
+"Customer service never responds to my tickets",negative
+"Simple and effective, I like it",positive
+"The mobile app is painfully slow",negative
+"Good value for the premium tier",positive
+"Integration with other tools is broken",negative
+"The dashboard is well organized",positive
+"Constant crashes on the latest Android version",negative
+"It works but could be better",neutral
+"The search functionality is incredibly fast",positive
+"Overpriced compared to competitors",negative
+"I enjoy using this product daily",positive
+"The export feature has multiple bugs",negative
+"Neither good nor bad, just functional",neutral
+"Excellent documentation and tutorials",positive
+"The app drains my battery extremely fast",negative
+"Smooth experience from start to finish",positive
+"Too many ads in the free version",negative
+"The reporting features are very useful",positive
+"Login keeps failing with authentication errors",negative
+"It does what I need, nothing more",neutral
+"Revolutionary product, changed how I work",positive
+"The UI feels outdated and clunky",negative
+"Responsive design works great on all screens",positive
+"Performance degrades significantly with large datasets",negative
+"Fair pricing for the features offered",neutral
+"The collaboration features are incredible",positive
+"My data was lost after the latest update",negative
+"Pretty good app overall",neutral
+"The notification system is very helpful",positive
+"Subscription model is terrible and confusing",negative
+"The charts and analytics are beautiful",positive
+"Cannot connect to the server half the time",negative
+"Standard tool, does the basics well",neutral
+"The real-time sync feature is flawless",positive
+"The app is way too expensive for students",negative
+"Overall a solid and reliable product",positive
+"The color scheme hurts my eyes",negative
+"Nice features but nothing groundbreaking",neutral
+"Amazingly fast and responsive interface",positive
+"Crashes whenever I upload large files",negative
+"Decent performance on most tasks",neutral
+"The machine learning features are top notch",positive
+"Billing errors keep happening every month",negative
+"It's okay, I've seen better alternatives",neutral
+"Super easy setup and configuration",positive
+"The help section is completely useless",negative
+"Meets expectations, no complaints",neutral
+"The dark theme is elegant and professional",positive
+"Extremely laggy on older devices",negative
+"A reliable tool for everyday use",positive
+"The pricing tiers are confusing and misleading",negative
+"Gets the job done without any fuss",neutral
+"I recommend this to everyone on my team",positive
+"So many bugs after the last update",negative
+"The API documentation is comprehensive and clear",positive
+"Loading screens take forever",negative
+"Average product with average features",neutral
+"The speed optimization is remarkable",positive
+"Error 500 appears randomly throughout the day",negative
+"I have no strong feelings about this product",neutral
+"Perfect for small businesses and startups",positive
+"The worst customer support I've ever experienced",negative
+"Functional but uninspiring design",neutral
+"Incredible value for the price point",positive
+"Memory leaks cause the app to slow down over time",negative
+"The product is fine for casual use",neutral
+"Beautifully crafted user experience",positive
+"The desktop version keeps crashing on Windows",negative
+"Moderately useful for my workflow",neutral
+"The team collaboration features are unmatched",positive
+"Way too many permission requests on mobile",negative
+"The product is stable and dependable",positive
+"Cost keeps increasing without new features",negative
+"The export to PDF feature works perfectly",positive
+"Navigation menu is broken on mobile browsers",negative
+"Just an ordinary software tool",neutral
+"The AI chatbot integration is brilliant",positive
+"Performance issues make it frustrating to use",negative
+"Satisfactory experience overall",neutral
+"Lightning fast response times across all platforms",positive
+"The free tier is basically useless",negative
