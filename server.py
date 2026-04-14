@@ -64,10 +64,6 @@ async def dataset_page():
     with open("frontend/dataset.html", "r", encoding="utf-8") as f:
         return f.read()
 
-@app.get("/training", response_class=HTMLResponse)
-async def training_page():
-    with open("frontend/training.html", "r", encoding="utf-8") as f:
-        return f.read()
 
 @app.get("/reports", response_class=HTMLResponse)
 async def reports_page():

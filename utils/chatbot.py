@@ -55,32 +55,32 @@ def chatbot_response(query, df):
     1. Retrieve similar feedback context from FAISS.
     2. Prompt Llama 3 via Ollama to answer the question using the context.
     """
+    q_lower = query.lower().strip()
+    
+    # Speed Optimization 1: Short-circuit conversational greetings.
+    greetings = ["hi", "hello", "hey", "how are you", "who are you", "what's up", "good morning", "good evening", "hi there", "hello there"]
+    if q_lower in greetings or (len(q_lower.split()) <= 2 and any(g in q_lower for g in ["hi", "hello", "hey"])):
+        return "Hello! I am Cognitive Core, your local AI assistant. I've indexed your dataset using FAISS. Ask me anything about your customer feedback!"
+        
     store = FeedbackVectorStore.get_instance(df)
     
     # Simple deduplication check shortcut
-    if "duplicate" in query.lower() or "similar" in query.lower():
-        # Retrieve the closest pairs (naive approach for a quick query, but handles the spirit of the text)
+    if "duplicate" in q_lower or "similar" in q_lower:
         return "Duplicate detection is active via FAISS similarity search. Feedbacks closer than a threshold of 0.8 L2-distance are flagged automatically during pipeline ingest."
 
-    # 1. Retrieve context
-    retrieved_feedbacks = store.search(query, top_k=10)
+    # Speed Optimization 2: Reduce context token size from k=10 to k=4.
+    retrieved_feedbacks = store.search(query, top_k=4)
     context_str = "\n".join([f" - {f}" for f in retrieved_feedbacks])
     
-    # 2. Build Prompt
-    prompt = f"""
-You are Cognitive Core, an intelligent local business analyst assistant.
-Rely heavily on the following retrieved customer feedback data to answer the user's question.
+    # Speed Optimization 3: Minimal, direct prompt mapping
+    prompt = f"""You are an intelligent business analyst assistant.
+Use ONLY the following context to answer the user's question concisely.
 
-Retrieved Context Data:
+Context:
 {context_str}
 
-User Question: {query}
-
-Instructions:
-1. Provide a concise, highly insightful answer.
-2. Directly quote or reference the user feedback if applicable.
-3. Be professional and data-driven. Do NOT invent feedback outside of what is provided.
-"""
+Question: {query}
+Answer:"""
     
     # 3. Query Ollama
     try:

@@ -35,10 +35,6 @@
             <span class="material-symbols-outlined">database</span>
             <span class="text-xs uppercase tracking-[0.05em] font-headline">Dataset</span>
         </a>
-        <a class="flex items-center gap-3 px-4 py-3 text-slate-400 font-medium hover:text-white hover:bg-[#222a3d] transition-colors duration-200" href="/training">
-            <span class="material-symbols-outlined">model_training</span>
-            <span class="text-xs uppercase tracking-[0.05em] font-headline">Model Training</span>
-        </a>
         <a class="flex items-center gap-3 px-4 py-3 text-slate-400 font-medium hover:text-white hover:bg-[#222a3d] transition-colors duration-200" href="/reports">
             <span class="material-symbols-outlined">analytics</span>
             <span class="text-xs uppercase tracking-[0.05em] font-headline">Reports</span>
@@ -77,9 +73,6 @@
                     <p class="text-sm text-[#c5c5d4] font-medium mt-1">Manage raw feedback inputs from <code class="bg-[#222a3d] px-2 py-0.5 rounded text-[#00daf3] text-xs">feedback.csv</code>. Apply NLP preprocessing and audit sentiment labels.</p>
                 </div>
                 <div class="flex gap-3">
-                    <button class="flex items-center gap-2 px-5 py-3 bg-[#222a3d] hover:bg-[#2d3449] text-white text-xs font-bold uppercase tracking-wider rounded-xl transition-colors">
-                        <span class="material-symbols-outlined text-sm">auto_fix_high</span> Clean Text
-                    </button>
                     <button class="flex items-center gap-2 px-5 py-3 bg-gradient-to-br from-[#bac3ff] to-[#4453a7] text-[#00105b] text-xs font-bold uppercase tracking-wider rounded-xl">
                         <span class="material-symbols-outlined text-sm">download</span> Export Dataset
                     </button>
@@ -88,19 +81,12 @@
         </section>
 
         <!-- Stats Cards -->
-        <section class="grid grid-cols-3 gap-6">
+        <section class="grid grid-cols-2 gap-6">
             <div class="bg-[#222a3d] p-6 rounded-xl">
                 <div class="text-[10px] font-bold text-[#c5c5d4] uppercase tracking-[0.1em] mb-4">Total Records</div>
                 <div class="text-4xl font-headline font-extrabold text-white" id="ds-total">--</div>
                 <div class="mt-4 flex items-center gap-2 text-[10px] font-bold text-[#00daf3]">
                     <span class="material-symbols-outlined text-xs">trending_up</span> from feedback.csv
-                </div>
-            </div>
-            <div class="bg-[#222a3d] p-6 rounded-xl">
-                <div class="text-[10px] font-bold text-[#c5c5d4] uppercase tracking-[0.1em] mb-4">Labeled Coverage</div>
-                <div class="text-4xl font-headline font-extrabold text-white" id="ds-coverage">--</div>
-                <div class="mt-4 w-full bg-[#131b2e] h-2 rounded-full overflow-hidden">
-                    <div class="h-full bg-[#00daf3] rounded-full" id="ds-coverage-bar" style="width:0%"></div>
                 </div>
             </div>
             <div class="bg-[#222a3d] p-6 rounded-xl">
