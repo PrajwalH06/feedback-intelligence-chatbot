@@ -182,10 +182,6 @@ async function loadDataset() {
     const res = await fetch('/api/feedback');
     allData = await res.json();
     document.getElementById('ds-total').textContent = allData.length.toLocaleString();
-    const labeled = allData.filter(d => d.label).length;
-    const pct = Math.round(labeled / allData.length * 100);
-    document.getElementById('ds-coverage').textContent = pct + '%';
-    document.getElementById('ds-coverage-bar').style.width = pct + '%';
     const uniqueLabels = [...new Set(allData.map(d => d.label))].filter(Boolean).length;
     document.getElementById('ds-labels').textContent = uniqueLabels + ' Classes';
     renderTable(allData);

@@ -124,11 +124,11 @@
             </div>
         </div>
         <div class="flex items-center gap-5">
-            <div class="relative group">
+            <div class="relative group" onclick="alert('No new notifications. All systems nominal.')">
                 <span class="material-symbols-outlined text-slate-300 hover:text-[#00daf3] cursor-pointer transition-all hover:scale-110">notifications</span>
                 <span class="absolute -top-1 -right-1 w-2 h-2 bg-[#ffb4ab] rounded-full"></span>
             </div>
-            <span class="material-symbols-outlined text-slate-300 hover:text-[#00daf3] cursor-pointer transition-all hover:scale-110">settings</span>
+            <span class="material-symbols-outlined text-slate-300 hover:text-[#00daf3] cursor-pointer transition-all hover:scale-110" onclick="alert('Settings: All inference runs locally via Ollama + FAISS. No external APIs.')">settings</span>
         </div>
     </header>
 
@@ -197,9 +197,9 @@
                         <div class="text-[10px] font-bold text-slate-400 uppercase tracking-widest mt-1">7-Day Trajectory</div>
                     </div>
                     <div class="flex gap-2">
-                        <span class="px-3 py-1 bg-[#222a3d] rounded-full text-[10px] font-bold text-white cursor-pointer">1D</span>
-                        <span class="px-3 py-1 bg-[#bac3ff] text-[#00105b] rounded-full text-[10px] font-bold cursor-pointer">7D</span>
-                        <span class="px-3 py-1 bg-[#222a3d] rounded-full text-[10px] font-bold text-white cursor-pointer">1M</span>
+                        <span class="px-3 py-1 bg-[#222a3d] rounded-full text-[10px] font-bold text-white cursor-pointer hover:bg-[#2d3449] transition-colors" onclick="this.parentElement.querySelectorAll('span').forEach(s=>s.className=s.className.replace('bg-[#bac3ff] text-[#00105b]','bg-[#222a3d] text-white'));this.className=this.className.replace('bg-[#222a3d] text-white','bg-[#bac3ff] text-[#00105b]')">1D</span>
+                        <span class="px-3 py-1 bg-[#bac3ff] text-[#00105b] rounded-full text-[10px] font-bold cursor-pointer hover:bg-[#2d3449] transition-colors" onclick="this.parentElement.querySelectorAll('span').forEach(s=>s.className=s.className.replace('bg-[#bac3ff] text-[#00105b]','bg-[#222a3d] text-white'));this.className=this.className.replace('bg-[#222a3d] text-white','bg-[#bac3ff] text-[#00105b]')">7D</span>
+                        <span class="px-3 py-1 bg-[#222a3d] rounded-full text-[10px] font-bold text-white cursor-pointer hover:bg-[#2d3449] transition-colors" onclick="this.parentElement.querySelectorAll('span').forEach(s=>s.className=s.className.replace('bg-[#bac3ff] text-[#00105b]','bg-[#222a3d] text-white'));this.className=this.className.replace('bg-[#222a3d] text-white','bg-[#bac3ff] text-[#00105b]')">1M</span>
                     </div>
                 </div>
                 <div class="h-64 flex items-end gap-1 relative overflow-hidden">
@@ -237,7 +237,7 @@
                         <span class="w-2 h-2 bg-[#00daf3] rounded-full animate-pulse-dot"></span>
                         <span class="text-[10px] font-bold text-slate-400">MONITORING</span>
                     </div>
-                    <button class="text-[10px] font-bold text-[#bac3ff] flex items-center gap-1">
+                    <button onclick="window.location.href='/dataset'" class="text-[10px] font-bold text-[#bac3ff] flex items-center gap-1 hover:text-[#00daf3] transition-colors">
                         VIEW ALL <span class="material-symbols-outlined text-xs">arrow_forward</span>
                     </button>
                 </div>

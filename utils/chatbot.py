@@ -4,7 +4,7 @@ Replaces the old rule-based system with a fully local RAG (Retrieval-Augmented G
 Dependencies: faiss-cpu, requests, scikit-learn
 """
 
-import json
+import re
 import requests
 import faiss
 from sklearn.feature_extraction.text import TfidfVectorizer
@@ -49,40 +49,70 @@ class FeedbackVectorStore:
         return results
 
 
+def _is_casual(query):
+    """Detect casual/conversational messages that don't need RAG or LLM."""
+    q = query.lower().strip()
+    # Remove punctuation for matching
+    q_clean = re.sub(r'[^a-z\s]', '', q).strip()
+    
+    # Exact greeting matches
+    greetings = {
+        "hi", "hello", "hey", "yo", "sup", "hola",
+        "hi there", "hello there", "hey there",
+        "how are you", "who are you", "what are you",
+        "whats up", "what s up", "good morning", "good evening",
+        "good afternoon", "good night", "thanks", "thank you",
+        "bye", "goodbye", "see you", "ok", "okay",
+        "hi chatbot", "hello chatbot", "hey chatbot",
+        "hi bot", "hello bot", "hey bot",
+        "hi neural", "hello neural",
+    }
+    if q_clean in greetings:
+        return True
+    
+    # Short messages (1-3 words) that start with a greeting word
+    words = q_clean.split()
+    if len(words) <= 3 and words[0] in {"hi", "hello", "hey", "yo", "sup", "thanks", "bye", "ok", "okay"}:
+        return True
+    
+    return False
+
+
 def chatbot_response(query, df):
     """
     RAG-based response generation.
-    1. Retrieve similar feedback context from FAISS.
-    2. Prompt Llama 3 via Ollama to answer the question using the context.
+    1. Short-circuit casual greetings instantly (no LLM call).
+    2. Retrieve similar feedback context from FAISS.
+    3. Prompt Llama 3 via Ollama to answer ONLY what was asked.
     """
-    q_lower = query.lower().strip()
+    # ── Instant responses for casual messages ──
+    if _is_casual(query):
+        return "Hello! I'm Cognitive Core, your local AI feedback analyst. Ask me anything about your customer feedback data — issues, sentiment, pricing complaints, or improvement ideas."
     
-    # Speed Optimization 1: Short-circuit conversational greetings.
-    greetings = ["hi", "hello", "hey", "how are you", "who are you", "what's up", "good morning", "good evening", "hi there", "hello there"]
-    if q_lower in greetings or (len(q_lower.split()) <= 2 and any(g in q_lower for g in ["hi", "hello", "hey"])):
-        return "Hello! I am Cognitive Core, your local AI assistant. I've indexed your dataset using FAISS. Ask me anything about your customer feedback!"
-        
     store = FeedbackVectorStore.get_instance(df)
     
-    # Simple deduplication check shortcut
+    # Deduplication shortcut
+    q_lower = query.lower().strip()
     if "duplicate" in q_lower or "similar" in q_lower:
         return "Duplicate detection is active via FAISS similarity search. Feedbacks closer than a threshold of 0.8 L2-distance are flagged automatically during pipeline ingest."
 
-    # Speed Optimization 2: Reduce context token size from k=10 to k=4.
+    # ── Retrieve context (kept small for speed) ──
     retrieved_feedbacks = store.search(query, top_k=4)
     context_str = "\n".join([f" - {f}" for f in retrieved_feedbacks])
     
-    # Speed Optimization 3: Minimal, direct prompt mapping
-    prompt = f"""You are an intelligent business analyst assistant.
-Use ONLY the following context to answer the user's question concisely.
+    # ── Strict, minimal prompt — prevents rambling ──
+    prompt = f"""You are a concise data analyst. Rules:
+1. Answer ONLY the user's question. Do NOT add extra commentary.
+2. Keep your answer under 60 words.
+3. Use ONLY the data below. Never invent data.
 
-Context:
+Data:
 {context_str}
 
 Question: {query}
-Answer:"""
+Answer (be brief):"""
     
-    # 3. Query Ollama
+    # ── Query Ollama ──
     try:
         response = requests.post(
             OLLAMA_URL,
