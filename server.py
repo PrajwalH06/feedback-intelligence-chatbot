@@ -187,7 +187,13 @@ async def get_report():
 
 @app.get("/api/export")
 async def export_dataset():
-    return FileResponse("data/feedback.csv", media_type="text/csv", filename="feedback_export.csv")
+    filepath = os.path.abspath("data/feedback.csv")
+    return FileResponse(
+        path=filepath,
+        media_type="text/csv",
+        filename="feedback_export.csv",
+        headers={"Content-Disposition": "attachment; filename=feedback_export.csv"}
+    )
 
 @app.post("/api/import")
 async def import_dataset(file: UploadFile = File(...)):

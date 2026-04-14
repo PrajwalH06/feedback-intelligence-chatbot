@@ -58,8 +58,6 @@
             </div>
         </div>
         <div class="flex items-center gap-5">
-            <span class="material-symbols-outlined text-slate-300 hover:text-[#00daf3] cursor-pointer transition-all hover:scale-110">notifications</span>
-            <span class="material-symbols-outlined text-slate-300 hover:text-[#00daf3] cursor-pointer transition-all hover:scale-110">settings</span>
         </div>
     </header>
 
@@ -76,9 +74,9 @@
                         <span class="material-symbols-outlined text-sm">upload</span> Import CSV
                         <input type="file" id="file-upload" class="hidden" accept=".csv" onchange="uploadCSV(event)" />
                     </label>
-                    <button onclick="window.open('/api/export', '_blank')" class="flex items-center gap-2 px-5 py-3 bg-gradient-to-br from-[#bac3ff] to-[#4453a7] text-[#00105b] text-xs font-bold uppercase tracking-wider rounded-xl">
+                    <a href="/api/export" download="feedback_export.csv" class="flex items-center gap-2 px-5 py-3 bg-gradient-to-br from-[#bac3ff] to-[#4453a7] text-[#00105b] text-xs font-bold uppercase tracking-wider rounded-xl no-underline">
                         <span class="material-symbols-outlined text-sm">download</span> Export Dataset
-                    </button>
+                    </a>
             </div>
         </section>
 
