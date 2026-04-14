@@ -5,3 +5,5 @@ nltk
 matplotlib
 fastapi
 uvicorn
+faiss-cpu
+requests
