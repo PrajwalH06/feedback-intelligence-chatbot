@@ -7,10 +7,11 @@ for the ML pipeline, chatbot, and feedback analysis.
 import os
 import json
 import pandas as pd
-from fastapi import FastAPI, Request
+from fastapi import FastAPI, Request, UploadFile, File
 from fastapi.responses import HTMLResponse, FileResponse, JSONResponse
 from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel
+import shutil
 
 from utils.predictor import predict, predict_with_confidence
 from utils.issue_detector import detect_issue
@@ -183,6 +184,29 @@ async def get_report():
         "positive_highlights": pos_samples,
         "negative_highlights": neg_samples,
     }
+
+@app.get("/api/export")
+async def export_dataset():
+    return FileResponse("data/feedback.csv", media_type="text/csv", filename="feedback_export.csv")
+
+@app.post("/api/import")
+async def import_dataset(file: UploadFile = File(...)):
+    global df, metrics
+    # Save the uploaded file, overwriting or appending
+    with open("data/feedback.csv", "ab") as buffer:
+        shutil.copyfileobj(file.file, buffer)
+    
+    # Reload the application data completely
+    df = load_data()
+    train_model() # Trigger an immediate retrain with new data
+    df = load_data() # Reload again to get new predictions
+    metrics = load_metrics()
+    
+    # Needs to reset the chatbot FAISS singleton.
+    from utils.chatbot import FeedbackVectorStore
+    FeedbackVectorStore._instance = None
+    
+    return {"status": "success", "message": "Dataset merged and models retrained."}
 
 
 if __name__ == "__main__":

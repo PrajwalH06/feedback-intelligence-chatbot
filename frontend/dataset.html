@@ -72,11 +72,13 @@
                     <h2 class="text-3xl font-extrabold font-headline text-white tracking-tight">Dataset Management</h2>
                     <p class="text-sm text-[#c5c5d4] font-medium mt-1">Manage raw feedback inputs from <code class="bg-[#222a3d] px-2 py-0.5 rounded text-[#00daf3] text-xs">feedback.csv</code>. Apply NLP preprocessing and audit sentiment labels.</p>
                 </div>
-                <div class="flex gap-3">
-                    <button class="flex items-center gap-2 px-5 py-3 bg-gradient-to-br from-[#bac3ff] to-[#4453a7] text-[#00105b] text-xs font-bold uppercase tracking-wider rounded-xl">
+                    <label class="flex items-center gap-2 px-5 py-3 bg-[#222a3d] hover:bg-[#2d3449] text-white text-xs font-bold uppercase tracking-wider rounded-xl transition-colors cursor-pointer">
+                        <span class="material-symbols-outlined text-sm">upload</span> Import CSV
+                        <input type="file" id="file-upload" class="hidden" accept=".csv" onchange="uploadCSV(event)" />
+                    </label>
+                    <button onclick="window.open('/api/export', '_blank')" class="flex items-center gap-2 px-5 py-3 bg-gradient-to-br from-[#bac3ff] to-[#4453a7] text-[#00105b] text-xs font-bold uppercase tracking-wider rounded-xl">
                         <span class="material-symbols-outlined text-sm">download</span> Export Dataset
                     </button>
-                </div>
             </div>
         </section>
 
@@ -101,12 +103,24 @@
             <div class="px-8 py-5 flex items-center gap-4">
                 <div class="relative flex-1">
                     <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-slate-500 text-lg">search</span>
-                    <input id="search-input" class="w-full bg-[#222a3d] border-none rounded-xl py-3 pl-12 pr-4 text-xs text-white placeholder-slate-500 focus:ring-2 focus:ring-[#bac3ff]/50" placeholder="Search keywords in text..." type="text" oninput="filterTable()"/>
+                    <input id="search-input" class="w-full bg-[#222a3d] border-none rounded-xl py-3 pl-12 pr-4 text-xs text-white placeholder-slate-500 focus:ring-2 focus:ring-[#bac3ff]/50" placeholder="Search keywords in text..." type="text" oninput="filterByCategory()"/>
                 </div>
-                <button onclick="filterByCategory('ALL')" class="px-4 py-3 bg-[#222a3d] hover:bg-[#2d3449] text-xs font-bold text-white rounded-xl uppercase">All</button>
-                <button onclick="filterByCategory('positive')" class="px-4 py-3 bg-[#222a3d] hover:bg-[#006470] text-xs font-bold text-[#00daf3] rounded-xl uppercase">Positive</button>
-                <button onclick="filterByCategory('negative')" class="px-4 py-3 bg-[#222a3d] hover:bg-[#93000a] text-xs font-bold text-[#ffb4ab] rounded-xl uppercase">Negative</button>
-                <button onclick="filterByCategory('neutral')" class="px-4 py-3 bg-[#222a3d] hover:bg-[#2d3449] text-xs font-bold text-[#bac3ff] rounded-xl uppercase">Neutral</button>
+                <div class="flex items-center gap-3">
+                    <select id="filter-label" class="bg-[#222a3d] border-none rounded-xl py-3 pl-4 pr-10 text-xs font-bold uppercase tracking-widest text-[#bac3ff] focus:ring-2 focus:ring-[#00daf3]" onchange="filterByCategory()">
+                        <option value="ALL">All Labels</option>
+                        <option value="positive">Positive</option>
+                        <option value="negative">Negative</option>
+                        <option value="neutral">Neutral</option>
+                    </select>
+                    <select id="filter-category" class="bg-[#222a3d] border-none rounded-xl py-3 pl-4 pr-10 text-xs font-bold uppercase tracking-widest text-[#00daf3] focus:ring-2 focus:ring-[#bac3ff]" onchange="filterByCategory()">
+                        <option value="ALL">Issue Category</option>
+                        <option value="Technical">Technical</option>
+                        <option value="Pricing">Pricing</option>
+                        <option value="UI/UX">UX/UI</option>
+                        <option value="Performance">Performance</option>
+                        <option value="General">General</option>
+                    </select>
+                </div>
             </div>
 
             <!-- Table Header -->
@@ -202,17 +216,33 @@ function renderTable(data) {
     document.getElementById('ds-showing').textContent = `SHOWING ${data.length} OF ${allData.length} ENTRIES`;
 }
 
-function filterTable() {
+function filterByCategory() {
     const q = document.getElementById('search-input').value.toLowerCase();
+    const sentFilter = document.getElementById('filter-label').value;
+    const catFilter = document.getElementById('filter-category').value;
+    
     let filtered = allData;
-    if (activeFilter !== 'ALL') filtered = filtered.filter(d => d.predicted === activeFilter);
+    if (sentFilter !== 'ALL') filtered = filtered.filter(d => d.predicted === sentFilter);
+    if (catFilter !== 'ALL') filtered = filtered.filter(d => d.issue === catFilter);
     if (q) filtered = filtered.filter(d => d.text.toLowerCase().includes(q));
+    
     renderTable(filtered);
 }
 
-function filterByCategory(cat) {
-    activeFilter = cat;
-    filterTable();
+async function uploadCSV(event) {
+    const file = event.target.files[0];
+    if (!file) return;
+    const formData = new FormData();
+    formData.append("file", file);
+    try {
+        const res = await fetch('/api/import', { method: 'POST', body: formData });
+        if (res.ok) { 
+            addMessage('bot', '✅ Success! The new records have been appended and I have retrained the local AI models automatically. The page is up to date.');
+            loadDataset(); 
+        } else {
+            addMessage('bot', '❌ Failed to upload dataset.');
+        }
+    } catch (e) { addMessage('bot', '❌ Upload failed: ' + e.message); }
 }
 
 function addMessage(role, content) {
