@@ -38,9 +38,15 @@ Raw text is messy. The pipeline first lowers the text, removes special character
     *   *Inverse Document Frequency (IDF):* Penalizes words that appear too frequently across the *entire* dataset (e.g., if every feedback says "app", the word "app" becomes mathematically less important).
 *   **Result:** Unique, highly-weighted keywords (like "crash" or "expensive") stand out, mapping the sentence into a 5,000-dimensional mathematical vector.
 
-### Phase 3: Sentiment Classification (Logistic Regression)
-*   **What is Logistic Regression?** Despite its name, Logistic Regression is a fundamental statistical *classification* algorithm. It takes the mathematical TF-IDF vector, multiplies it by optimized weights, and passes the result through a Sigmoid (or Softmax) function to output a probability between 0 and 1.
-*   **Why we used it:** During training, we evaluated both Logistic Regression and Multinomial Naive Bayes. Logistic Regression achieved a **98.9% accuracy score** on our test dataset, proving highly effective at drawing mathematical boundaries between "Positive", "Negative", and "Neutral" feedback.
+### Phase 3: Sentiment Classification & Model Training
+*   **What is Logistic Regression?** Despite its name, Logistic Regression is a fundamental statistical *classification* algorithm. It takes the mathematical TF-IDF vector, multiplies it by optimized weights, and passes the result through a Sigmoid function to output a probability between 0 and 1.
+*   **Where it happens:** The entire training flow is contained within `model/train.py`.
+*   **How the Model is Trained:**
+    1.  **Data Splitting:** The script loads `data/feedback.csv` and uses `scikit-learn`'s `train_test_split` to divide the records: 80% of data is used for training the model, and 20% is held back invisibly for testing. It uses *stratified sampling* to ensure the 80/20 split has an equal ratio of positive/negative/neutral labels.
+    2.  **Algorithm Showdown:** The `train()` function physically trains two different algorithms side-by-side: **Logistic Regression** and **Multinomial Naive Bayes**. 
+    3.  **Testing & Selection:** After training, both models are asked to predict the sentiment of the 20% held-back test data. The script compares their answers to the actual labels using `accuracy_score`. Logistic Regression consistently wins (achieving ~98.9% accuracy).
+    4.  **Serialization:** The winning model and the TF-IDF vocabulary mapping are saved to disk as binary files (`model.pkl` and `vectorizer.pkl`) using Python's `pickle` library, along with a `metrics.json` file.
+*   **Inference Mechanism:** When a user submits new feedback or the dashboard is opened, `utils/predictor.py` loads `model.pkl` into memory. It instantly classifies any incoming text as "Positive", "Negative", or "Neutral" based on what the model learned during `train.py`.
 
 ### Phase 4: Intent & Issue Detection (Rule-Based & Keyword Heuristics)
 Aside from sentiment, the backend (`issue_detector.py`) scans the text against curated heuristic dictionaries to tag specific pain points (e.g., if words like "slow", "lag", or "freeze" are present, it tags the issue as **Performance**).
