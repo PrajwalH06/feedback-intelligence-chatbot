@@ -38,15 +38,12 @@ Raw text is messy. The pipeline first lowers the text, removes special character
     *   *Inverse Document Frequency (IDF):* Penalizes words that appear too frequently across the *entire* dataset (e.g., if every feedback says "app", the word "app" becomes mathematically less important).
 *   **Result:** Unique, highly-weighted keywords (like "crash" or "expensive") stand out, mapping the sentence into a 5,000-dimensional mathematical vector.
 
-### Phase 3: Sentiment Classification & Model Training
-*   **What is Logistic Regression?** Despite its name, Logistic Regression is a fundamental statistical *classification* algorithm. It takes the mathematical TF-IDF vector, multiplies it by optimized weights, and passes the result through a Sigmoid function to output a probability between 0 and 1.
-*   **Where it happens:** The entire training flow is contained within `model/train.py`.
-*   **How the Model is Trained:**
-    1.  **Data Splitting:** The script loads `data/feedback.csv` and uses `scikit-learn`'s `train_test_split` to divide the records: 80% of data is used for training the model, and 20% is held back invisibly for testing. It uses *stratified sampling* to ensure the 80/20 split has an equal ratio of positive/negative/neutral labels.
-    2.  **Algorithm Showdown:** The `train()` function physically trains two different algorithms side-by-side: **Logistic Regression** and **Multinomial Naive Bayes**. 
-    3.  **Testing & Selection:** After training, both models are asked to predict the sentiment of the 20% held-back test data. The script compares their answers to the actual labels using `accuracy_score`. Logistic Regression consistently wins (achieving ~98.9% accuracy).
-    4.  **Serialization:** The winning model and the TF-IDF vocabulary mapping are saved to disk as binary files (`model.pkl` and `vectorizer.pkl`) using Python's `pickle` library, along with a `metrics.json` file.
-*   **Inference Mechanism:** When a user submits new feedback or the dashboard is opened, `utils/predictor.py` loads `model.pkl` into memory. It instantly classifies any incoming text as "Positive", "Negative", or "Neutral" based on what the model learned during `train.py`.
+### Phase 3: Sentiment Classification (Logistic Regression)
+*   **Where it happens in the code:** The real-time sentiment prediction is executed inside `utils/predictor.py`, while the training mechanism that builds the model occurs in `model/train.py`.
+*   **How the model is trained:** When `model/train.py` runs, it loads `data/feedback.csv` and splits the rows into a "training set" (80%) and a "testing set" (20%). It pushes the TF-IDF vectors alongside their correct human-assigned labels into the algorithm. The model iteratively adjusts mathematical weights to correctly match patterns of words to their labels. Once trained, the finalized "brain" of the model is saved as a serialized file (`model.pkl`) in the `model/` directory for fast real-time loading.
+*   **How it understands Positive, Negative, and Neutral:** 
+    *   **What is Logistic Regression?** It is a mathematical classification algorithm that draws numerical boundaries between distinct categories.
+    *   **The "Understanding" Process:** When analyzing a sentence, it applies the weights it learned during training to the sentence's word vectors. If the sentence uses words like "crash", "terrible", or "expensive" (which were heavily associated with the 'negative' label during training), the regression formula calculates a very high numerical score for the Negative class. These raw scores are passed through a Softmax function which converts them into percentages (e.g., 92% Negative, 6% Neutral, 2% Positive). Whichever category scores the highest percentage is returned as the final sentiment prediction.
 
 ### Phase 4: Intent & Issue Detection (Rule-Based & Keyword Heuristics)
 Aside from sentiment, the backend (`issue_detector.py`) scans the text against curated heuristic dictionaries to tag specific pain points (e.g., if words like "slow", "lag", or "freeze" are present, it tags the issue as **Performance**).
