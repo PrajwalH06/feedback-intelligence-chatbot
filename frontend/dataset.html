@@ -8,14 +8,14 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet"/>
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
     <script>
-        tailwind.config = { darkMode: "class", theme: { extend: { colors: { "surface": "#0b1326", "surface-container-low": "#131b2e", "surface-container-high": "#222a3d", "surface-container-highest": "#2d3449", "surface-variant": "#2d3449", "on-surface": "#dae2fd", "on-surface-variant": "#c5c5d4", "primary": "#bac3ff", "primary-container": "#4453a7", "on-primary": "#15267b", "on-primary-fixed": "#00105b", "tertiary": "#00daf3", "tertiary-container": "#006470", "error": "#ffb4ab", "error-container": "#93000a", "outline-variant": "#454652", "secondary-container": "#3a4a5f", "on-secondary-container": "#a9bad3" }, fontFamily: { headline: ["Manrope"], body: ["Inter"] } } } }
+        tailwind.config = { darkMode: "class", theme: { extend: { colors: { "surface": "#0b1326", "surface-container-low": "#131b2e", "surface-container-high": "#27272a", "surface-container-highest": "#3f3f46", "surface-variant": "#3f3f46", "on-surface": "#dae2fd", "on-surface-variant": "#c5c5d4", "primary": "#fafafa", "primary-container": "#e4e4e7", "on-primary": "#15267b", "on-primary-fixed": "#09090b", "tertiary": "#ffffff", "tertiary-container": "#27272a", "error": "#ef4444", "error-container": "#93000a", "outline-variant": "#454652", "secondary-container": "#3a4a5f", "on-secondary-container": "#a9bad3" }, fontFamily: { headline: ["Manrope"], body: ["Inter"] } } } }
     </script>
     <style>
         body { font-family: 'Inter', sans-serif; background-color: #0b1326; color: #dae2fd; }
         .font-headline { font-family: 'Manrope', sans-serif; }
         .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
-        ::-webkit-scrollbar { width: 4px; } ::-webkit-scrollbar-track { background: transparent; } ::-webkit-scrollbar-thumb { background: #222a3d; border-radius: 10px; }
-        .nav-active { color: #bac3ff; font-weight: 700; border-right: 2px solid #bac3ff; background: #222a3d; }
+        ::-webkit-scrollbar { width: 4px; } ::-webkit-scrollbar-track { background: transparent; } ::-webkit-scrollbar-thumb { background: #27272a; border-radius: 10px; }
+        .nav-active { color: #fafafa; font-weight: 700; border-right: 2px solid #fafafa; background: #27272a; }
     </style>
 </head>
 <body class="flex min-h-screen overflow-hidden">
@@ -23,11 +23,11 @@
 <!-- Sidebar -->
 <nav class="fixed left-0 top-0 h-full z-40 flex flex-col w-64 bg-[#131b2e]">
     <div class="p-6">
-        <div class="text-xl font-bold text-[#bac3ff] tracking-tight font-headline">Feedback Intelligence</div>
+        <div class="text-xl font-bold text-[#fafafa] tracking-tight font-headline">Feedback Intelligence</div>
         <div class="text-[10px] uppercase tracking-[0.05em] text-slate-500 font-medium mt-1">AI Model v2.4.1</div>
     </div>
     <div class="mt-8 flex-1 space-y-1 px-4">
-        <a class="flex items-center gap-3 px-4 py-3 text-slate-400 font-medium hover:text-white hover:bg-[#222a3d] transition-colors duration-200" href="/">
+        <a class="flex items-center gap-3 px-4 py-3 text-zinc-400 font-medium hover:text-white hover:bg-[#27272a] transition-colors duration-200" href="/">
             <span class="material-symbols-outlined">dashboard</span>
             <span class="text-xs uppercase tracking-[0.05em] font-headline">Dashboard</span>
         </a>
@@ -35,13 +35,13 @@
             <span class="material-symbols-outlined">database</span>
             <span class="text-xs uppercase tracking-[0.05em] font-headline">Dataset</span>
         </a>
-        <a class="flex items-center gap-3 px-4 py-3 text-slate-400 font-medium hover:text-white hover:bg-[#222a3d] transition-colors duration-200" href="/reports">
+        <a class="flex items-center gap-3 px-4 py-3 text-zinc-400 font-medium hover:text-white hover:bg-[#27272a] transition-colors duration-200" href="/reports">
             <span class="material-symbols-outlined">analytics</span>
             <span class="text-xs uppercase tracking-[0.05em] font-headline">Reports</span>
         </a>
     </div>
     <div class="p-6">
-        <button onclick="window.location.href='/'" class="w-full bg-gradient-to-br from-[#bac3ff] to-[#4453a7] text-[#00105b] font-bold py-3 px-4 rounded-xl text-xs uppercase tracking-wider flex items-center justify-center gap-2">
+        <button onclick="window.location.href='/'" class="w-full bg-gradient-to-br from-[#fafafa] to-[#e4e4e7] text-[#09090b] font-bold py-3 px-4 rounded-xl text-xs uppercase tracking-wider flex items-center justify-center gap-2">
             <span class="material-symbols-outlined text-sm">add</span> New Analysis
         </button>
     </div>
@@ -53,8 +53,8 @@
         <div class="flex items-center gap-8">
             <div class="text-lg font-black text-white font-headline">Cognitive Architect</div>
             <div class="hidden md:flex items-center gap-6 text-[10px] font-bold uppercase tracking-widest">
-                <span class="flex items-center gap-1.5"><span class="w-2 h-2 bg-[#00daf3] rounded-full"></span> Model Status: Active</span>
-                <span class="text-slate-300">Compute: 84%</span>
+                <span class="flex items-center gap-1.5"><span class="w-2 h-2 bg-[#ffffff] rounded-full"></span> Model Status: Active</span>
+                <span class="text-zinc-300">Compute: 84%</span>
             </div>
         </div>
         <div class="flex items-center gap-5">
@@ -64,17 +64,17 @@
     <div class="p-8 space-y-8">
         <!-- Header -->
         <section>
-            <div class="text-[10px] font-bold text-[#c5c5d4] uppercase tracking-widest mb-2">Data Explorer</div>
+            <div class="text-[10px] font-bold text-zinc-400 uppercase tracking-widest mb-2">Data Explorer</div>
             <div class="flex items-end justify-between">
                 <div>
                     <h2 class="text-3xl font-extrabold font-headline text-white tracking-tight">Dataset Management</h2>
-                    <p class="text-sm text-[#c5c5d4] font-medium mt-1">Manage raw feedback inputs from <code class="bg-[#222a3d] px-2 py-0.5 rounded text-[#00daf3] text-xs">feedback.csv</code>. Apply NLP preprocessing and audit sentiment labels.</p>
+                    <p class="text-sm text-zinc-400 font-medium mt-1">Manage raw feedback inputs from <code class="bg-[#27272a] px-2 py-0.5 rounded text-[#ffffff] text-xs">feedback.csv</code>. Apply NLP preprocessing and audit sentiment labels.</p>
                 </div>
-                    <label class="flex items-center gap-2 px-5 py-3 bg-[#222a3d] hover:bg-[#2d3449] text-white text-xs font-bold uppercase tracking-wider rounded-xl transition-colors cursor-pointer">
+                    <label class="flex items-center gap-2 px-5 py-3 bg-[#27272a] hover:bg-[#3f3f46] text-white text-xs font-bold uppercase tracking-wider rounded-xl transition-colors cursor-pointer">
                         <span class="material-symbols-outlined text-sm">upload</span> Import CSV
                         <input type="file" id="file-upload" class="hidden" accept=".csv" onchange="uploadCSV(event)" />
                     </label>
-                    <a href="/api/export" download="feedback_export.csv" class="flex items-center gap-2 px-5 py-3 bg-gradient-to-br from-[#bac3ff] to-[#4453a7] text-[#00105b] text-xs font-bold uppercase tracking-wider rounded-xl no-underline">
+                    <a href="/api/export" download="feedback_export.csv" class="flex items-center gap-2 px-5 py-3 bg-gradient-to-br from-[#fafafa] to-[#e4e4e7] text-[#09090b] text-xs font-bold uppercase tracking-wider rounded-xl no-underline">
                         <span class="material-symbols-outlined text-sm">download</span> Export Dataset
                     </a>
             </div>
@@ -82,17 +82,17 @@
 
         <!-- Stats Cards -->
         <section class="grid grid-cols-2 gap-6">
-            <div class="bg-[#222a3d] p-6 rounded-xl">
-                <div class="text-[10px] font-bold text-[#c5c5d4] uppercase tracking-[0.1em] mb-4">Total Records</div>
+            <div class="bg-[#27272a] p-6 rounded-xl">
+                <div class="text-[10px] font-bold text-zinc-400 uppercase tracking-[0.1em] mb-4">Total Records</div>
                 <div class="text-4xl font-headline font-extrabold text-white" id="ds-total">--</div>
-                <div class="mt-4 flex items-center gap-2 text-[10px] font-bold text-[#00daf3]">
+                <div class="mt-4 flex items-center gap-2 text-[10px] font-bold text-[#ffffff]">
                     <span class="material-symbols-outlined text-xs">trending_up</span> from feedback.csv
                 </div>
             </div>
-            <div class="bg-[#222a3d] p-6 rounded-xl">
-                <div class="text-[10px] font-bold text-[#c5c5d4] uppercase tracking-[0.1em] mb-4">Label Distribution</div>
+            <div class="bg-[#27272a] p-6 rounded-xl">
+                <div class="text-[10px] font-bold text-zinc-400 uppercase tracking-[0.1em] mb-4">Label Distribution</div>
                 <div class="text-4xl font-headline font-extrabold text-white" id="ds-labels">--</div>
-                <div class="mt-4 flex items-center gap-2 text-[10px] font-bold text-[#bac3ff]">Balanced</div>
+                <div class="mt-4 flex items-center gap-2 text-[10px] font-bold text-[#fafafa]">Balanced</div>
             </div>
         </section>
 
@@ -101,16 +101,16 @@
             <div class="px-8 py-5 flex items-center gap-4">
                 <div class="relative flex-1">
                     <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-slate-500 text-lg">search</span>
-                    <input id="search-input" class="w-full bg-[#222a3d] border-none rounded-xl py-3 pl-12 pr-4 text-xs text-white placeholder-slate-500 focus:ring-2 focus:ring-[#bac3ff]/50" placeholder="Search keywords in text..." type="text" oninput="filterByCategory()"/>
+                    <input id="search-input" class="w-full bg-[#27272a] border-none rounded-xl py-3 pl-12 pr-4 text-xs text-white placeholder-slate-500 focus:ring-2 focus:ring-[#fafafa]/50" placeholder="Search keywords in text..." type="text" oninput="filterByCategory()"/>
                 </div>
                 <div class="flex items-center gap-3">
-                    <select id="filter-label" class="bg-[#222a3d] border-none rounded-xl py-3 pl-4 pr-10 text-xs font-bold uppercase tracking-widest text-[#bac3ff] focus:ring-2 focus:ring-[#00daf3]" onchange="filterByCategory()">
+                    <select id="filter-label" class="bg-[#27272a] border-none rounded-xl py-3 pl-4 pr-10 text-xs font-bold uppercase tracking-widest text-[#fafafa] focus:ring-2 focus:ring-[#ffffff]" onchange="filterByCategory()">
                         <option value="ALL">All Labels</option>
                         <option value="positive">Positive</option>
                         <option value="negative">Negative</option>
                         <option value="neutral">Neutral</option>
                     </select>
-                    <select id="filter-category" class="bg-[#222a3d] border-none rounded-xl py-3 pl-4 pr-10 text-xs font-bold uppercase tracking-widest text-[#00daf3] focus:ring-2 focus:ring-[#bac3ff]" onchange="filterByCategory()">
+                    <select id="filter-category" class="bg-[#27272a] border-none rounded-xl py-3 pl-4 pr-10 text-xs font-bold uppercase tracking-widest text-[#ffffff] focus:ring-2 focus:ring-[#fafafa]" onchange="filterByCategory()">
                         <option value="ALL">Issue Category</option>
                         <option value="Technical">Technical</option>
                         <option value="Pricing">Pricing</option>
@@ -142,15 +142,15 @@
 </main>
 
 <!-- Chatbot Panel -->
-<aside class="fixed right-0 top-0 h-full w-80 bg-[#222a3d]/70 backdrop-blur-2xl z-50 flex flex-col border-l border-[#454652]/10">
+<aside class="fixed right-0 top-0 h-full w-80 bg-[#27272a]/70 backdrop-blur-2xl z-50 flex flex-col border-l border-[#454652]/10">
     <div class="p-6 border-b border-[#454652]/10">
         <div class="flex items-center gap-3">
-            <div class="w-10 h-10 rounded-full bg-[#006470] flex items-center justify-center text-[#00daf3]">
+            <div class="w-10 h-10 rounded-full bg-[#27272a] flex items-center justify-center text-[#ffffff]">
                 <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">smart_toy</span>
             </div>
             <div>
                 <div class="text-sm font-bold text-white font-headline">Neural Assistant</div>
-                <div class="text-[10px] font-bold text-[#00daf3] uppercase tracking-widest">Ready to analyze</div>
+                <div class="text-[10px] font-bold text-[#ffffff] uppercase tracking-widest">Ready to analyze</div>
             </div>
         </div>
     </div>
@@ -164,8 +164,8 @@
     </div>
     <div class="p-6">
         <div class="relative">
-            <input id="chat-input" class="w-full bg-[#2d3449] border-none rounded-full py-4 pl-6 pr-12 text-xs focus:ring-2 focus:ring-[#bac3ff]/50 text-white placeholder-slate-500" placeholder="Ask AI to clean data..." type="text" onkeydown="if(event.key==='Enter')sendChatFromInput()"/>
-            <button onclick="sendChatFromInput()" class="absolute right-4 top-1/2 -translate-y-1/2 text-[#bac3ff] hover:text-[#00daf3] transition-colors">
+            <input id="chat-input" class="w-full bg-[#3f3f46] border-none rounded-full py-4 pl-6 pr-12 text-xs focus:ring-2 focus:ring-[#fafafa]/50 text-white placeholder-slate-500" placeholder="Ask AI to clean data..." type="text" onkeydown="if(event.key==='Enter')sendChatFromInput()"/>
+            <button onclick="sendChatFromInput()" class="absolute right-4 top-1/2 -translate-y-1/2 text-[#fafafa] hover:text-[#ffffff] transition-colors">
                 <span class="material-symbols-outlined">send</span>
             </button>
         </div>
@@ -188,23 +188,23 @@ async function loadDataset() {
 function renderTable(data) {
     const container = document.getElementById('data-table');
     const sentStyles = {
-        'positive': { dot: '#00daf3', label: 'Positive' },
-        'negative': { dot: '#ffb4ab', label: 'Negative' },
-        'neutral': { dot: '#bac3ff', label: 'Neutral' }
+        'positive': { dot: '#ffffff', label: 'Positive' },
+        'negative': { dot: '#ef4444', label: 'Negative' },
+        'neutral': { dot: '#fafafa', label: 'Neutral' }
     };
-    const issueBg = { 'Technical': '#93000a', 'Performance': '#006470', 'Pricing': '#4453a7', 'UI/UX': '#3a4a5f', 'General': '#2d3449' };
+    const issueBg = { 'Technical': '#93000a', 'Performance': '#27272a', 'Pricing': '#e4e4e7', 'UI/UX': '#3a4a5f', 'General': '#3f3f46' };
     container.innerHTML = '';
     data.forEach(item => {
         const s = sentStyles[item.predicted] || sentStyles.neutral;
         container.innerHTML += `
-            <div class="px-8 py-4 grid grid-cols-12 gap-4 hover:bg-[#222a3d]/50 transition-colors cursor-pointer items-center">
+            <div class="px-8 py-4 grid grid-cols-12 gap-4 hover:bg-[#27272a]/50 transition-colors cursor-pointer items-center">
                 <div class="col-span-6 text-sm text-[#dae2fd] truncate">"${item.text}"</div>
-                <div class="col-span-2"><span class="px-2 py-1 bg-[#222a3d] text-[#c5c5d4] rounded text-[9px] font-bold uppercase">${item.label || 'N/A'}</span></div>
+                <div class="col-span-2"><span class="px-2 py-1 bg-[#27272a] text-zinc-400 rounded text-[9px] font-bold uppercase">${item.label || 'N/A'}</span></div>
                 <div class="col-span-2 flex items-center gap-2">
                     <span class="w-2 h-2 rounded-full" style="background:${s.dot}"></span>
-                    <span class="text-xs text-[#c5c5d4]">${s.label}</span>
+                    <span class="text-xs text-zinc-400">${s.label}</span>
                 </div>
-                <div class="col-span-2"><span class="px-2 py-1 rounded text-[9px] font-bold uppercase text-white" style="background:${issueBg[item.issue] || '#2d3449'}">${item.issue}</span></div>
+                <div class="col-span-2"><span class="px-2 py-1 rounded text-[9px] font-bold uppercase text-white" style="background:${issueBg[item.issue] || '#3f3f46'}">${item.issue}</span></div>
             </div>`;
     });
     document.getElementById('ds-showing').textContent = `SHOWING ${data.length} OF ${allData.length} ENTRIES`;
@@ -243,7 +243,7 @@ function addMessage(role, content) {
     const container = document.getElementById('chat-messages');
     const formatted = content.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>').replace(/\n/g, '<br>');
     const html = role === 'user'
-        ? `<div class="flex flex-col items-end gap-2"><div class="max-w-[90%] px-4 py-3 bg-[#2d3449] text-[#dae2fd] text-xs rounded-2xl rounded-tr-none border border-[#454652]/20">${formatted}</div><div class="text-[9px] font-bold text-slate-500">You</div></div>`
+        ? `<div class="flex flex-col items-end gap-2"><div class="max-w-[90%] px-4 py-3 bg-[#3f3f46] text-[#dae2fd] text-xs rounded-2xl rounded-tr-none border border-[#454652]/20">${formatted}</div><div class="text-[9px] font-bold text-slate-500">You</div></div>`
         : `<div class="flex flex-col items-start gap-2"><div class="max-w-[90%] px-4 py-3 bg-[#3a4a5f] text-[#a9bad3] text-xs rounded-2xl rounded-tl-sm shadow-[0px_12px_32px_rgba(0,0,0,0.4)]"><p class="leading-relaxed">${formatted}</p></div><div class="text-[9px] font-bold text-slate-500">Neural Bot</div></div>`;
     container.insertAdjacentHTML('beforeend', html);
     container.scrollTop = container.scrollHeight;
