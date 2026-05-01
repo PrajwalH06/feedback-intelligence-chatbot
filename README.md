@@ -55,7 +55,7 @@ feedback-intelligence-chatbot/
 ├── .gitignore
 │
 ├── data/
-│   └── feedback.csv          # Training dataset (110+ entries)
+│   └── feedback.csv          # Training dataset 
 │
 ├── model/
 │   ├── __init__.py
