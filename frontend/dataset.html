@@ -16,6 +16,7 @@
         .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
         ::-webkit-scrollbar { width: 4px; } ::-webkit-scrollbar-track { background: transparent; } ::-webkit-scrollbar-thumb { background: #27272a; border-radius: 10px; }
         .nav-active { color: #fafafa; font-weight: 700; border-right: 2px solid #fafafa; background: #27272a; }
+        @keyframes bounce { 0%, 60%, 100% { transform: translateY(0); opacity: 0.4; } 30% { transform: translateY(-6px); opacity: 1; } }
     </style>
 </head>
 <body class="flex min-h-screen overflow-hidden">
@@ -68,12 +69,21 @@
             <div class="flex items-end justify-between">
                 <div>
                     <h2 class="text-3xl font-extrabold font-headline text-white tracking-tight">Dataset Management</h2>
-                    <p class="text-sm text-zinc-400 font-medium mt-1">Manage raw feedback inputs from <code class="bg-[#27272a] px-2 py-0.5 rounded text-[#ffffff] text-xs">feedback.csv</code>. Apply NLP preprocessing and audit sentiment labels.</p>
+                    <p class="text-sm text-zinc-400 font-medium mt-1">Manage feedback data imported into <code class="bg-[#27272a] px-2 py-0.5 rounded text-[#ffffff] text-xs">analyzed.csv</code>. The system automatically predicts sentiment against the trained model.</p>
                 </div>
-                    <label class="flex items-center gap-2 px-5 py-3 bg-[#27272a] hover:bg-[#3f3f46] text-white text-xs font-bold uppercase tracking-wider rounded-xl transition-colors cursor-pointer">
-                        <span class="material-symbols-outlined text-sm">upload</span> Import CSV
-                        <input type="file" id="file-upload" class="hidden" accept=".csv" onchange="uploadCSV(event)" />
-                    </label>
+                        <select id="import-target" class="bg-[#27272a] border-none rounded-xl py-3 pl-4 pr-8 text-xs font-bold uppercase tracking-widest text-[#fafafa] focus:ring-2 focus:ring-[#ffffff] mr-2">
+                            <option value="analysis">Analysis (Unlabeled)</option>
+                            <option value="training">Training (Labeled)</option>
+                        </select>
+                        <select id="import-mode" class="bg-[#27272a] border-none rounded-xl py-3 pl-4 pr-8 text-xs font-bold uppercase tracking-widest text-[#fafafa] focus:ring-2 focus:ring-[#ffffff]">
+                            <option value="merge">Merge (Append)</option>
+                            <option value="replace">Replace All</option>
+                        </select>
+                        <label id="import-btn" class="flex items-center gap-2 px-5 py-3 bg-[#27272a] hover:bg-[#3f3f46] text-white text-xs font-bold uppercase tracking-wider rounded-xl transition-colors cursor-pointer">
+                            <span class="material-symbols-outlined text-sm">upload</span> <span id="import-btn-text">Import CSV</span>
+                            <input type="file" id="file-upload" class="hidden" accept=".csv" onchange="uploadCSV(event)" />
+                        </label>
+                    </div>
                     <a href="/api/export" download="feedback_export.csv" class="flex items-center gap-2 px-5 py-3 bg-gradient-to-br from-[#fafafa] to-[#e4e4e7] text-[#09090b] text-xs font-bold uppercase tracking-wider rounded-xl no-underline">
                         <span class="material-symbols-outlined text-sm">download</span> Export Dataset
                     </a>
@@ -86,7 +96,7 @@
                 <div class="text-[10px] font-bold text-zinc-400 uppercase tracking-[0.1em] mb-4">Total Records</div>
                 <div class="text-4xl font-headline font-extrabold text-white" id="ds-total">--</div>
                 <div class="mt-4 flex items-center gap-2 text-[10px] font-bold text-[#ffffff]">
-                    <span class="material-symbols-outlined text-xs">trending_up</span> from feedback.csv
+                    <span class="material-symbols-outlined text-xs">trending_up</span> from analyzed.csv
                 </div>
             </div>
             <div class="bg-[#27272a] p-6 rounded-xl">
@@ -226,17 +236,60 @@ function filterByCategory() {
 async function uploadCSV(event) {
     const file = event.target.files[0];
     if (!file) return;
+
+    const target = document.getElementById('import-target').value;
+    const mode = document.getElementById('import-mode').value;
+    const btnText = document.getElementById('import-btn-text');
+    const btnLabel = document.getElementById('import-btn');
+    
+    let endpoint = '';
+    if (target === 'analysis') {
+        endpoint = mode === 'replace' ? '/api/replace-dataset' : '/api/import';
+    } else {
+        endpoint = mode === 'replace' ? '/api/train-replace-dataset' : '/api/train-import';
+    }
+
+    // Confirm if replacing or training
+    let msg = '';
+    if (mode === 'replace') msg = '⚠️ This will REPLACE all existing data in the ' + target + ' dataset. Continue?';
+    if (target === 'training' && mode !== 'replace') msg = '⚠️ Adding to the training dataset will trigger a full model retraining. Continue?';
+    
+    if (msg && !confirm(msg)) {
+        event.target.value = '';
+        return;
+    }
+
+    // Show loading state
+    btnText.textContent = 'Uploading...';
+    btnLabel.style.opacity = '0.5';
+    btnLabel.style.pointerEvents = 'none';
+
     const formData = new FormData();
     formData.append("file", file);
     try {
-        const res = await fetch('/api/import', { method: 'POST', body: formData });
-        if (res.ok) { 
-            addMessage('bot', '✅ Success! The new records have been appended and I have retrained the local AI models automatically. The page is up to date.');
-            loadDataset(); 
+        const res = await fetch(endpoint, { method: 'POST', body: formData });
+        const data = await res.json();
+        if (res.ok) {
+            let successMsg = mode === 'replace' ? `✅ Dataset replaced successfully!` : `✅ Import complete!`;
+            if (target === 'training') {
+                successMsg += ` Model was retrained. New Accuracy: ${data.metrics?.best_accuracy || 'N/A'}%`;
+            } else {
+                successMsg += ` ${data.new_records} new records analyzed.`;
+            }
+            addMessage('bot', successMsg);
+            loadDataset();
         } else {
-            addMessage('bot', '❌ Failed to upload dataset.');
+            addMessage('bot', `❌ Import failed: ${data.detail || 'Unknown error'}`);
         }
-    } catch (e) { addMessage('bot', '❌ Upload failed: ' + e.message); }
+    } catch (e) {
+        addMessage('bot', '❌ Upload failed: ' + e.message);
+    } finally {
+        // Reset button state
+        btnText.textContent = 'Import CSV';
+        btnLabel.style.opacity = '1';
+        btnLabel.style.pointerEvents = 'auto';
+        event.target.value = '';  // Allow re-uploading same file
+    }
 }
 
 function addMessage(role, content) {
@@ -251,9 +304,36 @@ function addMessage(role, content) {
 
 async function sendChat(query) {
     addMessage('user', query);
-    const res = await fetch('/api/chat', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ query }) });
-    const data = await res.json();
-    addMessage('bot', data.response);
+    const container = document.getElementById('chat-messages');
+    const loadingId = 'typing-' + Date.now();
+    container.insertAdjacentHTML('beforeend', `
+        <div id="${loadingId}" class="flex flex-col items-start gap-2">
+            <div class="max-w-[90%] px-5 py-4 bg-[#3a4a5f] text-[#a9bad3] text-xs rounded-2xl rounded-tl-sm shadow-[0px_12px_32px_rgba(0,0,0,0.4)]">
+                <div class="flex items-center gap-1.5">
+                    <span style="width:6px;height:6px;border-radius:50%;background:#a9bad3;display:inline-block;animation:bounce 1.2s infinite ease-in-out"></span>
+                    <span style="width:6px;height:6px;border-radius:50%;background:#a9bad3;display:inline-block;animation:bounce 1.2s infinite ease-in-out 0.2s"></span>
+                    <span style="width:6px;height:6px;border-radius:50%;background:#a9bad3;display:inline-block;animation:bounce 1.2s infinite ease-in-out 0.4s"></span>
+                </div>
+            </div>
+            <div class="text-[9px] font-bold text-slate-500">Neural Bot • Thinking...</div>
+        </div>`);
+    container.scrollTop = container.scrollHeight;
+    const input = document.getElementById('chat-input');
+    input.disabled = true;
+    input.placeholder = 'Analyzing...';
+    try {
+        const res = await fetch('/api/chat', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ query }) });
+        const data = await res.json();
+        document.getElementById(loadingId)?.remove();
+        addMessage('bot', data.response);
+    } catch (e) {
+        document.getElementById(loadingId)?.remove();
+        addMessage('bot', 'Error: ' + e.message);
+    } finally {
+        input.disabled = false;
+        input.placeholder = 'Ask AI to clean data...';
+        input.focus();
+    }
 }
 
 function sendChatFromInput() {

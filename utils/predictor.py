@@ -28,6 +28,14 @@ def load_models():
     return False
 
 
+def reload_models():
+    """Force reload from disk (call after retraining)."""
+    global _model, _vectorizer
+    _model = None
+    _vectorizer = None
+    return load_models()
+
+
 def predict(text):
     """Predict sentiment label for a single text string."""
     if _model is None or _vectorizer is None:

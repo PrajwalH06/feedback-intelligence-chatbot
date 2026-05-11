@@ -72,6 +72,7 @@
         .nav-active { color: #fafafa; font-weight: 700; border-right: 2px solid #fafafa; background: #27272a; }
         @keyframes pulse-dot { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
         .animate-pulse-dot { animation: pulse-dot 2s ease-in-out infinite; }
+        @keyframes bounce { 0%, 60%, 100% { transform: translateY(0); opacity: 0.4; } 30% { transform: translateY(-6px); opacity: 1; } }
     </style>
 </head>
 <body class="flex min-h-screen overflow-hidden">
@@ -184,32 +185,49 @@
 
         <!-- Charts Section -->
         <section class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-            <!-- Sentiment Velocity -->
+            <!-- Sentiment Breakdown Chart -->
             <div class="lg:col-span-2 bg-[#131b2e] p-8 rounded-xl">
-                <div class="flex items-center justify-between mb-10">
+                <div class="flex items-center justify-between mb-6">
                     <div>
-                        <h3 class="text-xl font-bold font-headline text-white">Sentiment Velocity</h3>
-                        <div class="text-[10px] font-bold text-zinc-400 uppercase tracking-widest mt-1">7-Day Trajectory</div>
-                    </div>
-                    <div class="flex gap-2">
-                        <span class="px-3 py-1 bg-[#27272a] rounded-full text-[10px] font-bold text-white cursor-pointer hover:bg-[#3f3f46] transition-colors" onclick="this.parentElement.querySelectorAll('span').forEach(s=>s.className=s.className.replace('bg-[#fafafa] text-[#09090b]','bg-[#27272a] text-white'));this.className=this.className.replace('bg-[#27272a] text-white','bg-[#fafafa] text-[#09090b]')">1D</span>
-                        <span class="px-3 py-1 bg-[#fafafa] text-[#09090b] rounded-full text-[10px] font-bold cursor-pointer hover:bg-[#3f3f46] transition-colors" onclick="this.parentElement.querySelectorAll('span').forEach(s=>s.className=s.className.replace('bg-[#fafafa] text-[#09090b]','bg-[#27272a] text-white'));this.className=this.className.replace('bg-[#27272a] text-white','bg-[#fafafa] text-[#09090b]')">7D</span>
-                        <span class="px-3 py-1 bg-[#27272a] rounded-full text-[10px] font-bold text-white cursor-pointer hover:bg-[#3f3f46] transition-colors" onclick="this.parentElement.querySelectorAll('span').forEach(s=>s.className=s.className.replace('bg-[#fafafa] text-[#09090b]','bg-[#27272a] text-white'));this.className=this.className.replace('bg-[#27272a] text-white','bg-[#fafafa] text-[#09090b]')">1M</span>
+                        <h3 class="text-xl font-bold font-headline text-white">Sentiment Breakdown</h3>
+                        <div class="text-[10px] font-bold text-zinc-400 uppercase tracking-widest mt-1">Positive / Negative / Neutral Distribution</div>
                     </div>
                 </div>
-                <div class="h-64 flex items-end gap-1 relative overflow-hidden">
-                    <svg class="absolute inset-0 w-full h-full" preserveAspectRatio="none" id="velocity-chart">
-                        <defs>
-                            <linearGradient id="chartGradient" x1="0%" x2="0%" y1="0%" y2="100%">
-                                <stop offset="0%" style="stop-color:#ffffff;stop-opacity:0.2"></stop>
-                                <stop offset="100%" style="stop-color:#ffffff;stop-opacity:0"></stop>
-                            </linearGradient>
-                        </defs>
-                        <path d="M0 200 Q 50 150, 100 180 T 200 100 T 300 120 T 400 60 T 500 90 T 600 40 T 700 80 V 256 H 0 Z" fill="url(#chartGradient)"></path>
-                        <path d="M0 200 Q 50 150, 100 180 T 200 100 T 300 120 T 400 60 T 500 90 T 600 40 T 700 80" fill="none" stroke="#ffffff" stroke-width="2"></path>
-                    </svg>
-                    <div class="absolute bottom-0 left-0 w-full flex justify-between px-2 text-[10px] text-slate-500 font-bold uppercase">
-                        <span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span><span>Sun</span>
+                <div class="flex items-center justify-center gap-12">
+                    <!-- Donut Chart -->
+                    <div class="relative">
+                        <svg id="sentiment-donut" width="220" height="220" viewBox="0 0 220 220">
+                            <circle cx="110" cy="110" r="85" fill="none" stroke="#27272a" stroke-width="28"/>
+                            <!-- Arcs filled by JS -->
+                        </svg>
+                        <div class="absolute inset-0 flex flex-col items-center justify-center">
+                            <div class="text-3xl font-headline font-extrabold text-white" id="donut-total">--</div>
+                            <div class="text-[9px] font-bold text-zinc-400 uppercase tracking-widest">Total</div>
+                        </div>
+                    </div>
+                    <!-- Legend -->
+                    <div class="space-y-5" id="sentiment-legend">
+                        <div class="flex items-center gap-3">
+                            <div class="w-4 h-4 rounded-full" style="background: #22c55e"></div>
+                            <div>
+                                <div class="text-sm font-bold text-white" id="legend-pos-count">--</div>
+                                <div class="text-[10px] font-bold text-zinc-400 uppercase tracking-widest">Positive</div>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <div class="w-4 h-4 rounded-full" style="background: #ef4444"></div>
+                            <div>
+                                <div class="text-sm font-bold text-white" id="legend-neg-count">--</div>
+                                <div class="text-[10px] font-bold text-zinc-400 uppercase tracking-widest">Negative</div>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <div class="w-4 h-4 rounded-full" style="background: #a78bfa"></div>
+                            <div>
+                                <div class="text-sm font-bold text-white" id="legend-neu-count">--</div>
+                                <div class="text-[10px] font-bold text-zinc-400 uppercase tracking-widest">Neutral</div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -294,6 +312,55 @@ async function loadStats() {
     document.getElementById('stat-sentiment').textContent = score;
     document.getElementById('stat-sentiment-label').textContent = data.net_sentiment > 0 ? 'POSITIVE BASELINE' : 'NEEDS IMPROVEMENT';
     document.getElementById('stat-critical').textContent = data.critical_issues;
+
+    // Render donut chart
+    renderDonut(data.positive_count, data.negative_count, data.neutral_count);
+}
+
+function renderDonut(pos, neg, neu) {
+    const total = pos + neg + neu;
+    if (total === 0) return;
+
+    document.getElementById('donut-total').textContent = total;
+    document.getElementById('legend-pos-count').textContent = pos + ' (' + (pos/total*100).toFixed(1) + '%)';
+    document.getElementById('legend-neg-count').textContent = neg + ' (' + (neg/total*100).toFixed(1) + '%)';
+    document.getElementById('legend-neu-count').textContent = neu + ' (' + (neu/total*100).toFixed(1) + '%)';
+
+    const svg = document.getElementById('sentiment-donut');
+    // Clear old arcs (keep the background circle)
+    svg.querySelectorAll('.donut-arc').forEach(el => el.remove());
+
+    const cx = 110, cy = 110, r = 85;
+    const circumference = 2 * Math.PI * r;
+    const segments = [
+        { value: pos, color: '#22c55e' },
+        { value: neg, color: '#ef4444' },
+        { value: neu, color: '#a78bfa' },
+    ];
+
+    let offset = 0;
+    segments.forEach(seg => {
+        if (seg.value === 0) return;
+        const pct = seg.value / total;
+        const dashLen = pct * circumference;
+        const gap = circumference - dashLen;
+
+        const circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+        circle.setAttribute('class', 'donut-arc');
+        circle.setAttribute('cx', cx);
+        circle.setAttribute('cy', cy);
+        circle.setAttribute('r', r);
+        circle.setAttribute('fill', 'none');
+        circle.setAttribute('stroke', seg.color);
+        circle.setAttribute('stroke-width', '28');
+        circle.setAttribute('stroke-dasharray', dashLen + ' ' + gap);
+        circle.setAttribute('stroke-dashoffset', -offset);
+        circle.setAttribute('transform', 'rotate(-90 110 110)');
+        circle.style.transition = 'stroke-dasharray 0.8s ease, stroke-dashoffset 0.8s ease';
+        svg.appendChild(circle);
+
+        offset += dashLen;
+    });
 }
 
 async function loadCategories() {
@@ -365,9 +432,38 @@ function addMessage(role, content) {
 
 async function sendChat(query) {
     addMessage('user', query);
-    const res = await fetch('/api/chat', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ query }) });
-    const data = await res.json();
-    addMessage('bot', data.response);
+    // Show typing indicator
+    const container = document.getElementById('chat-messages');
+    const loadingId = 'typing-' + Date.now();
+    container.insertAdjacentHTML('beforeend', `
+        <div id="${loadingId}" class="flex flex-col items-start gap-2">
+            <div class="max-w-[90%] px-5 py-4 bg-[#3a4a5f] text-[#a9bad3] text-xs rounded-2xl rounded-tl-sm shadow-[0px_12px_32px_rgba(0,0,0,0.4)]">
+                <div class="flex items-center gap-1.5">
+                    <span class="typing-dot" style="width:6px;height:6px;border-radius:50%;background:#a9bad3;display:inline-block;animation:bounce 1.2s infinite ease-in-out"></span>
+                    <span class="typing-dot" style="width:6px;height:6px;border-radius:50%;background:#a9bad3;display:inline-block;animation:bounce 1.2s infinite ease-in-out 0.2s"></span>
+                    <span class="typing-dot" style="width:6px;height:6px;border-radius:50%;background:#a9bad3;display:inline-block;animation:bounce 1.2s infinite ease-in-out 0.4s"></span>
+                </div>
+            </div>
+            <div class="text-[9px] font-bold text-slate-500">Neural Bot • Thinking...</div>
+        </div>`);
+    container.scrollTop = container.scrollHeight;
+    // Disable input while processing
+    const input = document.getElementById('chat-input');
+    input.disabled = true;
+    input.placeholder = 'Analyzing...';
+    try {
+        const res = await fetch('/api/chat', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ query }) });
+        const data = await res.json();
+        document.getElementById(loadingId)?.remove();
+        addMessage('bot', data.response);
+    } catch (e) {
+        document.getElementById(loadingId)?.remove();
+        addMessage('bot', 'Error: ' + e.message);
+    } finally {
+        input.disabled = false;
+        input.placeholder = 'Query the intelligence...';
+        input.focus();
+    }
 }
 
 function sendChatFromInput() {

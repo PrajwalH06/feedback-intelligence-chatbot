@@ -16,6 +16,7 @@
         .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
         ::-webkit-scrollbar { width: 4px; } ::-webkit-scrollbar-track { background: transparent; } ::-webkit-scrollbar-thumb { background: #27272a; border-radius: 10px; }
         .nav-active { color: #fafafa; font-weight: 700; border-right: 2px solid #fafafa; background: #27272a; }
+        @keyframes bounce { 0%, 60%, 100% { transform: translateY(0); opacity: 0.4; } 30% { transform: translateY(-6px); opacity: 1; } }
     </style>
 </head>
 <body class="flex min-h-screen overflow-hidden">
@@ -32,17 +33,9 @@
         <a class="nav-active flex items-center gap-3 px-4 py-3 transition-colors duration-200" href="/reports"><span class="material-symbols-outlined">analytics</span><span class="text-xs uppercase tracking-[0.05em] font-headline">Reports</span></a>
     </div>
     <div class="p-6">
-        <button onclick="window.print()" class="w-full bg-[#27272a] hover:bg-[#3f3f46] text-white font-bold py-3 px-4 rounded-xl text-xs uppercase tracking-wider flex items-center justify-center gap-2 transition-colors">
-            <span class="material-symbols-outlined text-sm">download</span> Export Report
+        <button onclick="window.location.href='/'" class="w-full bg-gradient-to-br from-[#fafafa] to-[#e4e4e7] text-[#09090b] font-bold py-3 px-4 rounded-xl text-xs uppercase tracking-wider flex items-center justify-center gap-2">
+            <span class="material-symbols-outlined text-sm">add</span> New Analysis
         </button>
-        <div class="mt-4 flex gap-2">
-            <button onclick="window.location.href='/'" class="flex-1 py-2 bg-[#27272a] hover:bg-[#3f3f46] text-xs font-bold text-zinc-400 rounded-lg uppercase transition-colors text-center">
-                <span class="material-symbols-outlined text-sm block mx-auto mb-1">monitor_heart</span> Health
-            </button>
-            <button onclick="window.location.href='/dataset'" class="flex-1 py-2 bg-[#27272a] hover:bg-[#3f3f46] text-xs font-bold text-zinc-400 rounded-lg uppercase transition-colors text-center">
-                <span class="material-symbols-outlined text-sm block mx-auto mb-1">folder_open</span> Logs
-            </button>
-        </div>
     </div>
 </nav>
 
@@ -300,7 +293,39 @@ function addMessage(role, content) {
     container.insertAdjacentHTML('beforeend', html);
     container.scrollTop = container.scrollHeight;
 }
-async function sendChat(q) { addMessage('user', q); const r = await fetch('/api/chat', { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({query:q}) }); const d = await r.json(); addMessage('bot', d.response); }
+async function sendChat(q) {
+    addMessage('user', q);
+    const container = document.getElementById('chat-messages');
+    const loadingId = 'typing-' + Date.now();
+    container.insertAdjacentHTML('beforeend', `
+        <div id="${loadingId}" class="flex flex-col items-start gap-2">
+            <div class="max-w-[90%] px-5 py-4 bg-[#3a4a5f] text-[#a9bad3] text-xs rounded-2xl rounded-tl-sm shadow-[0px_12px_32px_rgba(0,0,0,0.4)]">
+                <div class="flex items-center gap-1.5">
+                    <span style="width:6px;height:6px;border-radius:50%;background:#a9bad3;display:inline-block;animation:bounce 1.2s infinite ease-in-out"></span>
+                    <span style="width:6px;height:6px;border-radius:50%;background:#a9bad3;display:inline-block;animation:bounce 1.2s infinite ease-in-out 0.2s"></span>
+                    <span style="width:6px;height:6px;border-radius:50%;background:#a9bad3;display:inline-block;animation:bounce 1.2s infinite ease-in-out 0.4s"></span>
+                </div>
+            </div>
+            <div class="text-[9px] font-bold text-slate-500">Neural Bot • Thinking...</div>
+        </div>`);
+    container.scrollTop = container.scrollHeight;
+    const input = document.getElementById('chat-input');
+    input.disabled = true;
+    input.placeholder = 'Analyzing...';
+    try {
+        const r = await fetch('/api/chat', { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({query:q}) });
+        const d = await r.json();
+        document.getElementById(loadingId)?.remove();
+        addMessage('bot', d.response);
+    } catch (e) {
+        document.getElementById(loadingId)?.remove();
+        addMessage('bot', 'Error: ' + e.message);
+    } finally {
+        input.disabled = false;
+        input.placeholder = 'Ask about the report...';
+        input.focus();
+    }
+}
 function sendChatFromInput() { const i = document.getElementById('chat-input'); if(!i.value.trim()) return; sendChat(i.value.trim()); i.value=''; }
 
 function triggerStrategy() {

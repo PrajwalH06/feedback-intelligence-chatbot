@@ -1,0 +1,31 @@
+text,label
+"The API rate limits are way too restrictive for our use case",negative
+"Onboarding wizard walked us through everything perfectly",positive
+"SSO integration with Okta was seamless and quick to set up",positive
+"Dashboard keeps timing out when loading reports with large date ranges",negative
+"The Slack integration sends real-time alerts which is super useful",positive
+"We lost 2 hours of work because autosave silently failed",negative
+"Role-based access control is well implemented and granular",positive
+"The pricing jumped 40% with no new features added",negative
+"Webhooks documentation is clear with working code examples",positive
+"Cannot bulk export more than 500 records at a time",negative
+"The uptime has been 99.9% for the past six months",positive
+"Two-factor authentication setup is unnecessarily complicated",negative
+"Custom report builder is powerful and highly flexible",positive
+"The mobile app lacks half the features of the web version",negative
+"White-labeling option is great for our agency clients",positive
+"Data migration from our old tool was a nightmare",negative
+"The kanban board view is clean and intuitive",positive
+"Audit logs are incomplete and missing critical user actions",negative
+"Workflow automation saves us at least 10 hours per week",positive
+"Their changelog never explains breaking changes properly",negative
+"Multi-tenant architecture handles our 50 teams efficiently",positive
+"The WYSIWYG editor corrupts formatting when pasting from Word",negative
+"Real-time collaboration on documents works flawlessly",positive
+"Support tickets take 3-5 business days for a first response",negative
+"The analytics module gives actionable insights out of the box",positive
+"Sandbox environment for testing is a nice enterprise feature",positive
+"No dark mode in 2026 is honestly embarrassing",negative
+"Handles concurrent users well without performance degradation",neutral
+"The product does what we need but innovation seems stagnant",neutral
+"Compliance certifications gave us confidence to adopt it",positive
